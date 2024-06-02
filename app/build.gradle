@@ -33,6 +33,14 @@ android {
 }
 
 dependencies {
+
+    implementation libs.okhttp
+    implementation libs.gson
+    implementation libs.volley
+    implementation libs.play.services.maps
+    implementation(libs.glide)
+    implementation libs.volley
+    annotationProcessor(libs.compiler)
     implementation libs.retrofit
     implementation libs.converter.gson
     implementation(libs.glide)

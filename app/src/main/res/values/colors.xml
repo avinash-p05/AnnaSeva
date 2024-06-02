@@ -2,8 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="main">#009944</color>
-    <color name ="bg">#171412</color>
+    <color name="main">#20B486</color>
+    <color name ="bg">#DEDEDE</color>
     <color name="textfield">#FFFFFF</color>
     <color name="text">#4E4D4C</color>
 </resources>

@@ -5,19 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".Start">
+    android:background="@color/bg"
+    tools:context=".auth.Start">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:fontFamily="@font/epilogue_bold"
+        android:fontFamily="@font/marck_script"
         android:gravity="center"
         android:padding="@dimen/_16sdp"
         android:text="🍴Anna Seva🥗"
         android:textColor="@color/main"
-        android:textSize="@dimen/_18ssp"
+        android:textSize="@dimen/_28ssp"
         app:flow_horizontalAlign="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,27 +28,29 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="423dp"
-        android:layout_height="296dp"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:cropToPadding="false"
         android:elevation="@dimen/_16sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.122"
+        app:layout_constraintVertical_bias="0.13"
         app:srcCompat="@drawable/start" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:layout_marginTop="@dimen/_1sdp"
         android:fontFamily="@font/epilogue_bold"
         android:gravity="start"
         android:lineHeight="@dimen/_22sdp"
         android:paddingHorizontal="@dimen/_12sdp"
         android:paddingVertical="@dimen/_10sdp"
-        android:text="Explore recipes from around the  world."
+        android:text="Transforming Surplus Food into Hope!"
         android:textColor="@color/main"
         android:textSize="@dimen/_18ssp"
         app:flow_horizontalAlign="center"
@@ -65,7 +67,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/epilogue"
         android:paddingHorizontal="@dimen/_12sdp"
-        android:text="The world's largest collection of recipes, from international cuisines to quick and easy  meals for the whole family."
+        android:lineSpacingExtra="@dimen/_5sdp"
+        android:text="Every year, millions of tons of food go to waste while millions of people go hungry. AnnaSeva transforms this surplus food into a beacon of hope by connecting restaurants with NGOs, ensuring that no meal goes to waste and no one goes hungry."
         android:textColor="@color/text"
         android:textSize="@dimen/_14ssp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -89,9 +92,9 @@
         android:textSize="@dimen/_16sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.345" />
+        app:layout_constraintVertical_bias="0.41" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

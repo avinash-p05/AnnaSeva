@@ -5,5 +5,8 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.AnnaSeva" parent="Base.Theme.AnnaSeva" />
+    <style name="Theme.AnnaSeva" parent="Base.Theme.AnnaSeva">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
 </resources>

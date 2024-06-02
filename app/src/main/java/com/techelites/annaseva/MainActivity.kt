@@ -1,12 +1,13 @@
 package com.techelites.annaseva
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.techelites.annaseva.hotel.Home
+import com.techelites.annaseva.hotel.Notification
+import com.techelites.annaseva.hotel.Post
+import com.techelites.annaseva.hotel.Profile
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomBar: BottomNavigationView
