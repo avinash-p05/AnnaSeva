@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.techelites.annaseva.R
 import com.techelites.annaseva.hotel.Home
-import com.techelites.annaseva.hotel.Notification
 import com.techelites.annaseva.hotel.Profile
 
 class NgoMainActivity : AppCompatActivity() {
@@ -17,12 +16,12 @@ class NgoMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ngo_main)
 
         bottomBar = findViewById(R.id.bnViewNgo)
-        loadFrag(Home())
+        loadFrag(NgoDashboard())
         bottomBar.setOnItemSelectedListener{
                 menuItem ->
             when(menuItem.itemId){
                 R.id.nav_home ->{
-                    loadFrag(Home())
+                    loadFrag(NgoDashboard())
                     true
                 }
                 R.id.nav_post ->{
@@ -31,7 +30,7 @@ class NgoMainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_notification -> {
-                    loadFrag(Notification())
+                    loadFrag(NgoNotifications())
                     true
                 }
                 R.id.nav_profile -> {

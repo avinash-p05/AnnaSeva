@@ -1,5 +1,6 @@
 package com.techelites.annaseva.ngo
 
+import FoodNgo
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
@@ -62,10 +63,10 @@ class FoodAdapterNgo(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipe = recipes[position]
         holder.nameF.text = recipe.name
-        holder.hotelF.text = recipe.hotelName
+        holder.hotelF.text = recipe.hotel.name
         holder.dateF.text = recipe.createdAt
-        recipe.location?.let {
-            geocodeLocation(it, object : GeocodeCallback {
+        recipe.hotel.location.coordinates?.let {
+            geocodeLocation(it.toString(), object : GeocodeCallback {
                 override fun onGeocodeSuccess(formattedLocation: String) {
                     Handler(Looper.getMainLooper()).post {
                         holder.locationF.text = formattedLocation

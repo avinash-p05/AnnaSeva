@@ -20,6 +20,15 @@
         android:theme="@style/Theme.AnnaSeva"
         tools:targetApi="31">
         <activity
+            android:name=".TrackOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ngo.NgoNotificationsDetails"
+            android:exported="false" />
+        <activity
+            android:name=".hotel.NotificationDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".hotel.HotelFoodDetails"
             android:exported="false" />
         <activity

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+        id 'kotlin-parcelize'
 }
 
 android {
@@ -15,6 +16,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    viewBinding {
+        enabled = true
     }
 
     buildTypes {
@@ -33,13 +37,17 @@ android {
 }
 
 dependencies {
+    implementation libs.zxing.android.embedded
+
 
     implementation libs.okhttp
+    implementation libs.androidx.espresso.core
     implementation libs.gson
     implementation libs.volley
     implementation libs.play.services.maps
     implementation(libs.glide)
     implementation libs.volley
+    implementation libs.androidx.ui.desktop
     annotationProcessor(libs.compiler)
     implementation libs.retrofit
     implementation libs.converter.gson

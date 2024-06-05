@@ -1,0 +1,356 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ngo.NgoNotificationsDetails">
+
+    <android.widget.Button
+        android:id="@+id/btnTrackOrder"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:background="@drawable/btn1"
+        android:elevation="@dimen/_16sdp"
+        android:fontFamily="@font/epilogue_bold"
+        android:text="Track your Food"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.931" />
+
+    <TextView
+        android:id="@+id/tvDonationPickupInstructions"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="instruction\nasdfasd"
+        android:lineSpacingExtra="@dimen/_5sdp"
+        android:paddingHorizontal="@dimen/_26sdp"
+        android:paddingVertical="5dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.781" />
+
+    <TextView
+        android:id="@+id/tex333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Pickup Instructions"
+        android:textColor="@color/main"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.718" />
+
+    <TextView
+        android:id="@+id/tvDonationExpiry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="exp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.675" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Expiry Date:"
+        android:textColor="@color/main"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.011"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.676" />
+
+    <TextView
+        android:id="@+id/tvDonationIdealFor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="ideal"
+        android:paddingVertical="@dimen/_5sdp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.633" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Ideal For:"
+        android:textColor="@color/main"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.633" />
+
+    <TextView
+        android:id="@+id/tvDonationDescription"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="description asdfasdfasdfsadfasdfasdfasdf"
+        android:lineSpacingExtra="@dimen/_5sdp"
+        android:paddingHorizontal="@dimen/_26sdp"
+        android:paddingVertical="5dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.58" />
+
+    <TextView
+        android:id="@+id/tex33"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Description"
+        android:textColor="@color/main"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.523" />
+
+    <TextView
+        android:id="@+id/tvDonationQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="@font/epilogue"
+        android:hint="qty"
+        android:paddingVertical="@dimen/_5sdp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView95"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.482" />
+
+    <TextView
+        android:id="@+id/textView95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Quantity :"
+        android:textColor="@color/main"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.483" />
+
+    <TextView
+        android:id="@+id/tvDonationCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="cat"
+
+        android:paddingVertical="@dimen/_5sdp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Category :"
+        android:textColor="@color/main"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.441" />
+
+    <TextView
+        android:id="@+id/foodType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="Type"
+
+        android:paddingVertical="@dimen/_5sdp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.398" />
+
+    <ImageView
+        android:id="@+id/imageViewD"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/_16sdp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.129"
+        app:srcCompat="@drawable/food" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Type :"
+        android:textColor="@color/main"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.398" />
+
+    <TextView
+        android:id="@+id/tvDonationName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_bold"
+        android:gravity="center"
+        android:hint="Title"
+        android:padding="@dimen/_16sdp"
+        android:textColor="@color/main"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_18ssp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.019" />
+
+    <!--    <TextView-->
+<!--        android:id="@+id/tvDonationName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Donation Name" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvDonationDescription"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Donation Description" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvDonationCategory"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Donation Category" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvDonationQuantity"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Donation Quantity" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvDonationExpiry"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Donation Expiry" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvDonationIdealFor"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Donation Ideal For" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvDonationPickupInstructions"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Donation Pickup Instructions" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btnTrackOrder"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Track Order" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

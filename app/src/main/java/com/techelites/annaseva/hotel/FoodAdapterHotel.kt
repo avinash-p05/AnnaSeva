@@ -4,16 +4,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import com.techelites.annaseva.Donation
+import com.techelites.annaseva.auth.Donation
 import com.techelites.annaseva.R
 
 class FoodAdapterHotel(
     private val context: Context,
     private var foodList: List<Donation>,
-    private val itemClickListener: (Donation) -> Unit
+    private val onViewDetailsClick: (Donation) -> Unit,
+    private val onViewRequestsClick: (Donation) -> Unit
 ) : RecyclerView.Adapter<FoodAdapterHotel.FoodViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
@@ -25,7 +26,8 @@ class FoodAdapterHotel(
         val foodItem = foodList[position]
         holder.foodName.text = foodItem.name
         holder.foodCreated.text = foodItem.createdAt
-        holder.bind(foodItem, itemClickListener)
+        holder.viewDetailsButton.setOnClickListener { onViewDetailsClick(foodItem) }
+        holder.viewRequestsButton.setOnClickListener { onViewRequestsClick(foodItem) }
     }
 
     override fun getItemCount(): Int {
@@ -40,9 +42,7 @@ class FoodAdapterHotel(
     inner class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val foodName: TextView = itemView.findViewById(R.id.nameH)
         val foodCreated: TextView = itemView.findViewById(R.id.dateH)
-
-        fun bind(foodItem: Donation, clickListener: (Donation) -> Unit) {
-            itemView.setOnClickListener { clickListener(foodItem) }
-        }
+        val viewDetailsButton: Button = itemView.findViewById(R.id.requests)
+        val viewRequestsButton: Button = itemView.findViewById(R.id.details)
     }
 }

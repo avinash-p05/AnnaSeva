@@ -1,5 +1,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
@@ -7,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_210sdp"
+        android:layout_height="@dimen/_250sdp"
         android:background="@color/main"
 
         android:orientation="vertical">
@@ -50,7 +51,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.974" />
+            app:layout_constraintVertical_bias="0.8" />
 
         <ImageView
             android:id="@+id/recipeImage2"
@@ -63,7 +64,39 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.422"
+            app:layout_constraintVertical_bias="0.243"
             app:srcCompat="@drawable/food" />
+
+        <Button
+            android:id="@+id/details"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_5sdp"
+            android:fontFamily="@font/epilogue_semibold"
+            android:text="View Requests"
+            android:textColor="@color/main"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.928"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameH" />
+
+        <Button
+            android:id="@+id/requests"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_5sdp"
+            android:fontFamily="@font/epilogue_semibold"
+            android:text="View Details"
+            android:textColor="@color/main"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.071"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nameH" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

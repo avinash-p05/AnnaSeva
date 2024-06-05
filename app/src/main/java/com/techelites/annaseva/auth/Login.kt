@@ -7,19 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.techelites.annaseva.Hotel
-import com.techelites.annaseva.LoginRequest
-import com.techelites.annaseva.LoginRequestVolunteer
-import com.techelites.annaseva.LoginResponseHotel
-import com.techelites.annaseva.LoginResponseNgo
-import com.techelites.annaseva.LoginResponseUser
-import com.techelites.annaseva.LoginResponseVolunteer
 import com.techelites.annaseva.MainActivity
-import com.techelites.annaseva.Ngo
 import com.techelites.annaseva.R
 import com.techelites.annaseva.services.RetrofitClient
-import com.techelites.annaseva.User
-import com.techelites.annaseva.Volunteer
 import com.techelites.annaseva.hotel.HotelMainActivity
 import com.techelites.annaseva.ngo.NgoMainActivity
 import com.techelites.annaseva.volunteer.VolunteerMainActivity
@@ -70,10 +60,10 @@ class Login : AppCompatActivity() {
         val emailText = email.text.toString()
         val passText = pass.text.toString()
 
-        if (emailText.isBlank() || passText.isBlank()) {
-            Toast.makeText(this, "Please fill the fields!!", Toast.LENGTH_SHORT).show()
-            return
-        }
+//        if (emailText.isBlank() || passText.isBlank()) {
+//            Toast.makeText(this, "Please fill the fields!!", Toast.LENGTH_SHORT).show()
+//            return
+//        }
 
         val selectedRoleId = radioGroup.checkedRadioButtonId
         if (selectedRoleId == -1) {

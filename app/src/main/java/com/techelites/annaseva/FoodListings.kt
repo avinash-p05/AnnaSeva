@@ -1,19 +1,6 @@
 package com.example.annasevaapp
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-import com.google.gson.reflect.TypeToken
-import com.techelites.annaseva.Donation
-import com.techelites.annaseva.DonationAdapter
-import com.techelites.annaseva.R
-import java.lang.reflect.Type
 
 class FoodListings : Fragment() {
 

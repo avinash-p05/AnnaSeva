@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_270sdp"
-        android:background="@color/main"
+        android:background="@color/white"
         android:orientation="vertical">
 
 
@@ -20,7 +20,7 @@
             android:hint="date"
             android:fontFamily="@font/epilogue"
             android:paddingHorizontal="@dimen/_8sdp"
-            android:textColor="@color/bg"
+            android:textColor="@color/main"
             android:textColorHint="@color/text"
             android:textSize="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -34,14 +34,14 @@
             android:id="@+id/locationF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
             android:layout_marginTop="@dimen/_2sdp"
-            android:lineSpacingExtra="4dp"
+            android:fontFamily="@font/epilogue"
             android:gravity="start"
             android:hint="Loc"
+            android:lineSpacingExtra="4dp"
             android:paddingHorizontal="@dimen/_16sdp"
             android:paddingVertical="@dimen/_2sdp"
-            android:textColor="@color/white"
+            android:textColor="@color/main"
             android:textColorHint="@color/white"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,39 +51,23 @@
             app:layout_constraintTop_toBottomOf="@+id/nameF"
             app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="37dp"
-            android:layout_marginTop="5dp"
-            android:layout_height="36dp"
-            android:background="@drawable/circlular"
-            android:padding="@dimen/_5sdp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/baseline_person_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
         <TextView
             android:id="@+id/hotelF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
             android:fontFamily="@font/epilogue_bold"
             android:gravity="start"
-            android:layout_marginStart="5dp"
             android:hint="Username"
             android:paddingVertical="@dimen/_8sdp"
-            android:textColor="@color/bg"
+            android:textColor="@color/main"
             android:textColorHint="@color/white"
             android:textSize="@dimen/_14ssp"
             app:flow_horizontalAlign="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintHorizontal_bias="0.027"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -96,7 +80,7 @@
             android:hint="Title"
             android:paddingHorizontal="@dimen/_14sdp"
             android:paddingVertical="@dimen/_4sdp"
-            android:textColor="@color/white"
+            android:textColor="@color/main"
             android:textColorHint="@color/white"
             android:textSize="@dimen/_14ssp"
             app:flow_horizontalAlign="center"

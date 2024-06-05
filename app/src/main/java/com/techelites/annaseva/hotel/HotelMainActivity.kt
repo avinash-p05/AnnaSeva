@@ -14,12 +14,12 @@ class HotelMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_hotel_main)
 
         bottomBar = findViewById(R.id.bnViewHotel)
-        loadFrag(Home())
+        loadFrag(HotelDashboard())
         bottomBar.setOnItemSelectedListener{
                 menuItem ->
             when(menuItem.itemId){
                 R.id.nav_home ->{
-                    loadFrag(Home())
+                    loadFrag(HotelDashboard())
                     true
                 }
                 R.id.nav_listing ->{

@@ -1,11 +1,11 @@
 package com.techelites.annaseva.services
 
-import com.techelites.annaseva.LoginRequest
-import com.techelites.annaseva.LoginRequestVolunteer
-import com.techelites.annaseva.LoginResponseHotel
-import com.techelites.annaseva.LoginResponseNgo
-import com.techelites.annaseva.LoginResponseUser
-import com.techelites.annaseva.LoginResponseVolunteer
+import com.techelites.annaseva.auth.LoginRequest
+import com.techelites.annaseva.auth.LoginRequestVolunteer
+import com.techelites.annaseva.auth.LoginResponseHotel
+import com.techelites.annaseva.auth.LoginResponseNgo
+import com.techelites.annaseva.auth.LoginResponseUser
+import com.techelites.annaseva.auth.LoginResponseVolunteer
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

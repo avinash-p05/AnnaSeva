@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.techelites.annaseva.hotel.Home
-import com.techelites.annaseva.hotel.Notification
 import com.techelites.annaseva.hotel.Post
 import com.techelites.annaseva.hotel.Profile
 
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_notification -> {
-                    loadFrag(Notification())
+                    loadFrag(Profile())
                     true
                 }
                 R.id.nav_profile -> {

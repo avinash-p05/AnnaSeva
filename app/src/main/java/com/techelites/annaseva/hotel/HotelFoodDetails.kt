@@ -9,10 +9,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.JsonParser
-import com.techelites.annaseva.Donation
-import com.techelites.annaseva.Location
+import com.techelites.annaseva.auth.Donation
+import com.techelites.annaseva.auth.Location
 import com.techelites.annaseva.R
 import okhttp3.*
+import okhttp3.Request
 import java.io.IOException
 
 class HotelFoodDetails : AppCompatActivity() {
@@ -100,7 +101,7 @@ class HotelFoodDetails : AppCompatActivity() {
         foodCreatedAt.text = food.createdAt
         foodLocation.text = "Loading location..." // Placeholder until geocoding is done
         // Assuming the location is stored in a single string field
-        food.hotel?.location?.let { geocodeLocation(it) }
+        food.location?.let { geocodeLocation(it) }
     }
 
     private fun geocodeLocation(location: Location) {

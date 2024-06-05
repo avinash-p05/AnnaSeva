@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/bg"
-    tools:context=".common.FoodDetailsActivity">
+    android:background="@color/bg">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,7 +12,7 @@
         <!-- Adjusted constraints for the following TextViews -->
 
         <android.widget.Button
-            android:id="@+id/requestButton"
+            android:id="@+id/deleteButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_48sdp"
             android:layout_marginHorizontal="@dimen/_12sdp"
@@ -22,7 +21,7 @@
             android:background="@drawable/btn1"
             android:elevation="@dimen/_16sdp"
             android:fontFamily="@font/epilogue_bold"
-            android:text="Request Donation"
+            android:text="Delete Post"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"
@@ -64,7 +63,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.734" />
+            app:layout_constraintVertical_bias="0.741" />
 
         <TextView
             android:id="@+id/tex33"
@@ -78,10 +77,10 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.468" />
+            app:layout_constraintVertical_bias="0.342" />
 
         <TextView
             android:id="@+id/sss"
@@ -118,23 +117,6 @@
             app:layout_constraintVertical_bias="0.698" />
 
         <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Post by :"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.33" />
-
-        <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
 
@@ -147,10 +129,10 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.713"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.591" />
+            app:layout_constraintVertical_bias="0.449" />
 
         <TextView
             android:id="@+id/textView11"
@@ -165,10 +147,10 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.114"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.556" />
+            app:layout_constraintVertical_bias="0.439" />
 
         <TextView
             android:id="@+id/textView7"
@@ -182,10 +164,10 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.132"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.364" />
+            app:layout_constraintVertical_bias="0.179" />
 
         <TextView
             android:id="@+id/textView19"
@@ -199,10 +181,10 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.112"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.399" />
+            app:layout_constraintVertical_bias="0.237" />
 
         <TextView
             android:id="@+id/textView95"
@@ -216,10 +198,10 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.096"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.433" />
+            app:layout_constraintVertical_bias="0.286" />
 
         <TextView
             android:id="@+id/textView9"
@@ -239,29 +221,11 @@
             app:layout_constraintVertical_bias="0.626" />
 
         <TextView
-            android:id="@+id/foodHotelName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
-            android:hint="User"
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView10"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.329" />
-
-        <TextView
             android:id="@+id/foodinstruction"
             android:layout_width="411dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:fontFamily="@font/epilogue"
-            android:hint="instruction"
+            android:hint="instruction\nasdfasd"
             android:lineSpacingExtra="@dimen/_5sdp"
             android:paddingHorizontal="@dimen/_26sdp"
             android:paddingVertical="5dp"
@@ -272,11 +236,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tex333"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.79" />
 
         <TextView
-            android:id="@+id/fooddescription"
+            android:id="@+id/foodDescription"
             android:layout_width="411dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/epilogue"
@@ -292,10 +256,10 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.511" />
+            app:layout_constraintVertical_bias="0.383" />
 
         <TextView
-            android:id="@+id/typeD"
+            android:id="@+id/foodType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/epilogue"
@@ -307,10 +271,10 @@
             android:textSize="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.09"
             app:layout_constraintStart_toEndOf="@+id/textView7"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.364" />
+            app:layout_constraintVertical_bias="0.178" />
 
         <TextView
             android:id="@+id/foodCategory"
@@ -325,10 +289,10 @@
             android:textSize="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.056"
             app:layout_constraintStart_toEndOf="@+id/textView19"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.398" />
+            app:layout_constraintVertical_bias="0.236" />
 
         <TextView
             android:id="@+id/foodQuantity"
@@ -343,10 +307,10 @@
             android:textSize="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.097"
             app:layout_constraintStart_toEndOf="@+id/textView95"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.433" />
+            app:layout_constraintVertical_bias="0.286" />
 
         <TextView
             android:id="@+id/foodAvailableAt"
@@ -381,7 +345,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView13"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.591" />
+            app:layout_constraintVertical_bias="0.59" />
 
         <TextView
             android:id="@+id/foodIdealFor"
@@ -429,9 +393,9 @@
             android:textColor="@color/black"
             android:textColorHint="@color/text"
             android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toTopOf="@+id/requestButton"
+            app:layout_constraintBottom_toTopOf="@+id/deleteButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView132"
             app:layout_constraintVertical_bias="0.5" />
@@ -457,11 +421,11 @@
             android:id="@+id/foodDonationStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
+            android:fontFamily="@font/epilogue_bold"
             android:hint="trans"
             android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/bg"
-            android:textColorHint="@color/bg"
+            android:textColor="@color/main"
+            android:textColorHint="@color/text"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -469,20 +433,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.023" />
-
-        <ImageView
-            android:id="@+id/imageViewD"
-            android:layout_width="411dp"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/_16sdp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.148"
-            app:srcCompat="@drawable/food" />
 
         <TextView
             android:id="@+id/foodName"
@@ -498,10 +448,10 @@
             app:flow_horizontalAlign="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.061" />
+            app:layout_constraintVertical_bias="0.059" />
 
         <ImageButton
             android:id="@+id/backArrowDetials"
@@ -515,25 +465,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.017" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieAnimationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.611"
-            app:lottie_rawRes="@raw/upload8" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

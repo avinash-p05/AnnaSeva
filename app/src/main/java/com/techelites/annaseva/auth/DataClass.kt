@@ -1,4 +1,4 @@
-package com.techelites.annaseva
+package com.techelites.annaseva.auth
 
 import java.io.Serializable
 
@@ -106,11 +106,11 @@ data class Volunteer(
     val __v: Int
 )
 
+
 data class Location(
     val type: String,
     val coordinates: List<Double>
 )
-
 
 data class DonationsResponse(
     val success: Boolean,
@@ -119,6 +119,7 @@ data class DonationsResponse(
 
 data class Donation(
     val _id: String,
+    val location: Location,
     val type: String,
     val name: String,
     val description: String,
@@ -128,14 +129,14 @@ data class Donation(
     val idealfor: String,
     val availableAt: String,
     val transportation: String,
-    val uploadPhoto: Any?, // Change type as per actual data
-    val requests: List<Any>, // Change type as per actual data
+    val uploadPhoto: String,
+    val requests: List<String>, // Change type as per actual data
     val contactPerson: String,
     val donationStatus: String,
     val pickupInstructions: String,
-    val hotel: Hotel?, // Change type as per actual data
+    val hotel: String, // Change type as per actual data
     val isUsable: Boolean,
-    val reports: List<Any>, // Change type as per actual data
+    val reports: List<String>, // Change type as per actual data
     val autoAssignStatus: String,
     val shipmentStatus: String,
     val hotelCoversTransport: Boolean,
@@ -143,4 +144,4 @@ data class Donation(
     val createdAt: String,
     val updatedAt: String,
     val __v: Int
-):Serializable
+) : Serializable

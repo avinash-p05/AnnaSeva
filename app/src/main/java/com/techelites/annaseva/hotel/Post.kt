@@ -13,6 +13,7 @@ import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
+import android.util.Base64
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -175,6 +176,10 @@ class Post : Fragment() {
             val expiryDateFormatted = dateFormat.format(SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(expiryDateString)!!)
             val availableDateFormatted = dateFormat.format(SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(availableDateString)!!)
 
+            // Convert image URI to base64 string
+            val imageBase64 = convertImageUriToBase64(imageUri)
+
+            jsonBody.put("uploadPhoto", imageBase64)
             jsonBody.put("expiry", expiryDateFormatted)
             jsonBody.put("idealfor", spinnerIdeal.selectedItem.toString())
             jsonBody.put("availableAt", availableDateFormatted)
@@ -182,15 +187,15 @@ class Post : Fragment() {
             jsonBody.put("contactPerson", contactPerson.text.toString())
             jsonBody.put("pickupInstructions", instruction.text.toString())
             jsonBody.put("locationType", "Point")
-            jsonBody.put("donationStatus", "Available")
-            jsonBody.put("isUsable", true)
 
             // Correct coordinates
-            val latitude = 15.839224
-            val longitude = 74.555730
-            val coordinates = JSONArray().put(longitude).put(latitude)
-            jsonBody.put("locationCoordinates", coordinates)
+            val latitude = 15.8392
+            val longitude = 74.5557
 
+            jsonBody.put("locationCoordinates[0]", latitude)
+            jsonBody.put("locationCoordinates[1]", longitude)
+
+            Log.d("PostDonation", "JSON Body: $jsonBody")
             // Show progress bar
             progressBar.visibility = View.VISIBLE
 
@@ -229,6 +234,30 @@ class Post : Fragment() {
             Log.d("PostDonation", "JSON Error: ${e.message}")
         }
     }
+
+    private fun convertImageUriToBase64(imageUri: Uri?): String {
+        if (imageUri == null) {
+            Log.e("ConvertImage", "Image URI is null")
+            return ""
+        }
+
+        try {
+            val inputStream = requireContext().contentResolver.openInputStream(imageUri)
+            val bytes = inputStream?.readBytes()
+            inputStream?.close()
+
+            if (bytes != null && bytes.isNotEmpty()) {
+                return Base64.encodeToString(bytes, Base64.DEFAULT)
+            } else {
+                Log.e("ConvertImage", "Byte array is null or empty")
+            }
+        } catch (e: Exception) {
+            Log.e("ConvertImage", "Error converting image to base64: ${e.message}")
+        }
+
+        return ""
+    }
+
 
     private fun clearFields() {
         name.text.clear()
