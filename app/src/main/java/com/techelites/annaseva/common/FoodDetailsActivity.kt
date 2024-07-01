@@ -1,4 +1,4 @@
-package com.techelites.annaseva.common
+package com.techelites.annaseva.volunteer
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -18,7 +18,9 @@ import com.google.gson.JsonParser
 import com.techelites.annaseva.R
 import FoodNgo
 import android.animation.Animator
+import android.widget.ImageView
 import android.widget.Toast
+import com.squareup.picasso.Picasso
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import org.json.JSONObject
@@ -27,6 +29,7 @@ import java.io.IOException
 class FoodDetailsActivity : AppCompatActivity() {
 
     private lateinit var foodName: TextView
+    private lateinit var foodImage: ImageView
     private lateinit var foodCategory: TextView
     private lateinit var foodQuantity: TextView
     private lateinit var foodExpiry: TextView
@@ -53,6 +56,7 @@ class FoodDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_food_details)
 
         foodName = findViewById(R.id.foodName)
+        foodImage = findViewById(R.id.imageViewD)
         foodType = findViewById(R.id.typeD)
         foodCategory = findViewById(R.id.foodCategory)
         foodQuantity = findViewById(R.id.foodQuantity)
@@ -68,6 +72,8 @@ class FoodDetailsActivity : AppCompatActivity() {
         foodLocation = findViewById(R.id.foodLocation)
         requestButton = findViewById(R.id.requestButton)
         progressBar = findViewById(R.id.progressBar)
+        progressBar.visibility= View.GONE
+
         lottieAnimationView = findViewById(R.id.lottieAnimationView)
 
         val foodItem = intent.getParcelableExtra<FoodNgo>("foodItem")
@@ -86,6 +92,8 @@ class FoodDetailsActivity : AppCompatActivity() {
     }
 
     private fun updateUI(food: FoodNgo) {
+        val imageUrl = "http://annaseva.ajinkyatechnologies.in/${food.uploadPhoto}"
+        Picasso.get().load(imageUrl).into(foodImage)
         // Update UI with food details
         foodType.text = food.type
         foodName.text = food.name
@@ -166,7 +174,7 @@ class FoodDetailsActivity : AppCompatActivity() {
             // The NGO has not requested this donation yet
             runOnUiThread {
                 // Update button to request state
-                requestButton.text = "Request"
+                requestButton.text = "Request Donation"
                 requestButton.setBackgroundColor(resources.getColor(R.color.main, null))
                 requestButton.isEnabled = true
             }
@@ -229,7 +237,7 @@ class FoodDetailsActivity : AppCompatActivity() {
 
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("http://10.0.2.2:5000/api/donation/donations/request")
+            .url("http://annaseva.ajinkyatechnologies.in/api/donation/donations/request")
             .put(RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), requestBody.toString()))
 
             .build()

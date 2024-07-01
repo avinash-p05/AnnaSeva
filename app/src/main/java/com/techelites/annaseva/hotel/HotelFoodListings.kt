@@ -60,7 +60,7 @@ class HotelFoodListings : Fragment() {
         userId = pref.getString("userid", "").toString()
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("http://10.0.2.2:5000/api/donation/donationsbyhotel?id=$userId")
+            .url("http://annaseva.ajinkyatechnologies.in/api/donation/donationsbyhotel?id=$userId")
             .build()
 
         client.newCall(request).enqueue(object : Callback {

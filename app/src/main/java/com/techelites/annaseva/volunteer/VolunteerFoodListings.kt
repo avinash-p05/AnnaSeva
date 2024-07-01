@@ -3,6 +3,7 @@ package com.techelites.annaseva.volunteer
 import FoodNgo
 import HotelNgo
 import LocationNgo
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -15,38 +16,36 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.techelites.annaseva.common.FoodDetailsActivity
 import com.techelites.annaseva.R
 import com.techelites.annaseva.ngo.FoodAdapterNgo
 import okhttp3.*
-import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
-import java.util.concurrent.TimeUnit
 
 class VolunteerFoodListings : Fragment(), FoodAdapterNgo.OnRecipeClickListener {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var recipeAdapter: FoodAdapterNgo
+    private lateinit var recipeAdapter: FoodAdapterVolun
     private lateinit var progressBar: ProgressBar
     private lateinit var  userId : String
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_ngo_food_listings, container, false)
+        val view = inflater.inflate(R.layout.fragment_volunteer_food_listings, container, false)
 
-        recyclerView = view.findViewById(R.id.recipeView)
+        recyclerView = view.findViewById(R.id.recipeViewV)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recipeAdapter = FoodAdapterNgo(ArrayList(), requireContext(), this)
+        recipeAdapter = FoodAdapterVolun(ArrayList(), requireContext(), this)
         recyclerView.adapter = recipeAdapter
 
-        progressBar = view.findViewById(R.id.progressBar)
+        progressBar = view.findViewById(R.id.progressBarV)
         progressBar.visibility = View.VISIBLE
 
         // Load recipes from API
@@ -63,7 +62,7 @@ class VolunteerFoodListings : Fragment(), FoodAdapterNgo.OnRecipeClickListener {
         userId = pref.getString("userid","").toString()
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("http://10.0.2.2:5000/api/donation/volunteer/$userId/donations") // Replace with your actual API URL
+            .url("http://annaseva.ajinkyatechnologies.in/api/volunteer") // Replace with your actual API URL
             .build()
 
         client.newCall(request).enqueue(object : Callback {
@@ -200,7 +199,7 @@ class VolunteerFoodListings : Fragment(), FoodAdapterNgo.OnRecipeClickListener {
 
     override fun onRecipeClick(food: FoodNgo) {
         // Handle the click event, navigate to FoodDetailsActivity
-        val intent = Intent(context, FoodDetailsActivity::class.java)
+        val intent = Intent(context, FoodDetailsVolunteer::class.java)
         // Pass necessary data to FoodDetailsActivity using Intent extras
         intent.putExtra("foodItem", food)
         startActivity(intent)

@@ -38,6 +38,7 @@ android {
 
 dependencies {
     implementation libs.zxing.android.embedded
+    implementation libs.picasso
 
 
     implementation libs.okhttp

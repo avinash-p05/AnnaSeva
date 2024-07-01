@@ -46,7 +46,7 @@ class Profile : Fragment() {
             Context.MODE_PRIVATE
         )
         val savedUserName = pref.getString("username", "")
-        val savedEmail = pref.getString("userid", "")
+        val savedEmail = pref.getString("email", "")
         userId = pref.getString("userid","").toString()
         // Display the saved data in TextViews
         userName.text = savedUserName

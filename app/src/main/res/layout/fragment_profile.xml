@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@color/hotelbg"
     tools:context=".hotel.Profile">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,7 +12,7 @@
 
     <ProgressBar
         android:id="@+id/progessId"
-        style="@style/CustomProgressBar"
+        style="@style/CustomProgressBarhm"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
@@ -21,14 +21,14 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.289" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <android.widget.Button
         android:id="@+id/logoutbtn"
         android:layout_width="@dimen/_130sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:background="@drawable/btn1"
+        android:background="@drawable/btnh"
         android:elevation="@dimen/_16sdp"
         android:fontFamily="@font/epilogue_bold"
         android:text="Log Out"
@@ -52,7 +52,7 @@
         android:fontFamily="@font/epilogue_bold"
         android:text="Edit Profile"
         android:textAllCaps="false"
-        android:textColor="@color/main"
+        android:textColor="@color/hotelmain"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +61,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.107" />
 
+
     <TextView
         android:id="@+id/emailP"
         android:layout_width="wrap_content"
@@ -68,16 +69,15 @@
 
         android:hint="Email"
         android:paddingHorizontal="@dimen/_16sdp"
-        android:textColor="@color/main"
-        android:textColorHint="@color/main"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:flow_horizontalAlign="start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.306" />
-
+        app:layout_constraintVertical_bias="0.323" />
 
     <TextView
         android:layout_width="match_parent"
@@ -86,7 +86,7 @@
         android:gravity="center"
         android:padding="@dimen/_16sdp"
         android:text="Profile"
-        android:textColor="@color/main"
+        android:textColor="@color/hotelmain"
         android:textSize="@dimen/_18ssp"
         app:flow_horizontalAlign="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -106,25 +106,25 @@
         android:hint="Username"
         android:paddingHorizontal="@dimen/_14sdp"
         android:paddingVertical="@dimen/_8sdp"
-        android:textColor="@color/main"
-        android:textColorHint="@color/main"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="@dimen/_14ssp"
         app:flow_horizontalAlign="start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.057"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.262" />
+        app:layout_constraintVertical_bias="0.271" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_80sdp"
         android:layout_margin="@dimen/_16sdp"
-        android:background="@drawable/circlular"
+        android:background="@drawable/circlularh"
         android:scaleType="centerCrop"
-        android:src="@drawable/baseline_person_25"
+        android:src="@drawable/baseline_person_25h"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -137,10 +137,10 @@
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_margin="@dimen/_16sdp"
-        android:background="@color/bg"
+        android:background="@color/hotelbg"
         android:clickable="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/baseline_settings_24"
+        android:src="@drawable/baseline_settings_24h"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.983"

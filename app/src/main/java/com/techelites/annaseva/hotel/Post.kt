@@ -1,19 +1,23 @@
 package com.techelites.annaseva.hotel
 
+import android.animation.Animator
+import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
-import android.util.Base64
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -21,11 +25,15 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
 import com.android.volley.Request
+import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.techelites.annaseva.R
-import org.json.JSONArray
 import org.json.JSONObject
+import java.io.ByteArrayOutputStream
+import java.io.UnsupportedEncodingException
+import java.net.URLEncoder
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -82,10 +90,7 @@ class Post : Fragment() {
 
         // Set up spinners
         setupSpinner(spinnerType, R.array.Type_spinner_items, R.layout.type_custom_spinner_item)
-        setupSpinner(spinnerCategory,
-            R.array.Category_spinner_items,
-            R.layout.category_custom_spinner_item
-        )
+        setupSpinner(spinnerCategory, R.array.Category_spinner_items, R.layout.category_custom_spinner_item)
         setupSpinner(spinnerIdeal, R.array.Ideal_spinner_items, R.layout.ideal_custom_spinner_item)
         setupSpinner(spinnerTrans, R.array.Trans_spinner_items, R.layout.trans_custom_spinner_item)
 
@@ -145,7 +150,7 @@ class Post : Fragment() {
             .setMessage("Are you sure you want to post this donation?")
             .setPositiveButton("Yes") { dialog, _ ->
                 dialog.dismiss()
-                postDonation()
+                uploadImageAndPostDonation()
             }
             .setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss()
@@ -153,10 +158,52 @@ class Post : Fragment() {
             .show()
     }
 
-    private fun postDonation() {
+    private fun uploadImageAndPostDonation() {
+        imageUri?.let {
+            progressBar.visibility = View.VISIBLE
+            val url = "http://annaseva.ajinkyatechnologies.in/public/donations/"
+
+            val bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, it)
+            val compressedBitmap = compressBitmap(bitmap, 500) // Compress to 500 KB
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            compressedBitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream)
+            val byteArray = byteArrayOutputStream.toByteArray()
+            val base64Image = Base64.encodeToString(byteArray, Base64.DEFAULT)
+
+            val imageUploadRequest = object : StringRequest(
+                Method.POST, url,
+                Response.Listener { response ->
+                    // Assuming the response contains the image path
+                    val imagePath = response
+                    postDonation(imagePath)
+                },
+                Response.ErrorListener { error ->
+                    progressBar.visibility = View.GONE
+                    Log.e("ImageUpload", "Error: ${error.message}", error)
+                    Toast.makeText(requireContext(), "Image Upload Failed. Please try again.", Toast.LENGTH_SHORT).show()
+                }) {
+                override fun getHeaders(): Map<String, String> {
+                    val headers = HashMap<String, String>()
+                    headers["Content-Type"] = "application/x-www-form-urlencoded"
+                    return headers
+                }
+
+                override fun getBody(): ByteArray {
+                    val params = HashMap<String, String>()
+                    params["image"] = base64Image
+                    return encodeParameters(params, paramsEncoding)
+                }
+            }
+
+            val requestQueue = Volley.newRequestQueue(requireContext())
+            requestQueue.add(imageUploadRequest)
+        }
+    }
+
+    private fun postDonation(imagePath: String) {
         val pref: SharedPreferences = requireActivity().getSharedPreferences("login", Context.MODE_PRIVATE)
         userId = pref.getString("userid", "").toString()
-        val url = "http://10.0.2.2:5000/api/donation/donations?id=$userId"
+        val url = "http://annaseva.ajinkyatechnologies.in/api/donation/donations?id=$userId"
         val jsonBody = JSONObject()
 
         try {
@@ -173,109 +220,90 @@ class Post : Fragment() {
             val availableDateString = availableDate.text.toString() + "T09:00:00.000Z"
 
             // Format the dates
-            val expiryDateFormatted = dateFormat.format(SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(expiryDateString)!!)
-            val availableDateFormatted = dateFormat.format(SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(availableDateString)!!)
+            val expiryDateFormatted = dateFormat.parse(expiryDateString)
+            val availableDateFormatted = dateFormat.parse(availableDateString)
 
-            // Convert image URI to base64 string
-            val imageBase64 = convertImageUriToBase64(imageUri)
+            // Use formatted dates in the request body
+            jsonBody.put("availableDate", dateFormat.format(availableDateFormatted))
+            jsonBody.put("expiryDate", dateFormat.format(expiryDateFormatted))
 
-            jsonBody.put("uploadPhoto", imageBase64)
-            jsonBody.put("expiry", expiryDateFormatted)
-            jsonBody.put("idealfor", spinnerIdeal.selectedItem.toString())
-            jsonBody.put("availableAt", availableDateFormatted)
-            jsonBody.put("transportation", spinnerTrans.selectedItem.toString())
+            // Instructions and contacts
+            jsonBody.put("transportRequirements", spinnerTrans.selectedItem.toString())
+            jsonBody.put("idealFor", spinnerIdeal.selectedItem.toString())
+            jsonBody.put("image", imagePath)
             jsonBody.put("contactPerson", contactPerson.text.toString())
-            jsonBody.put("pickupInstructions", instruction.text.toString())
-            jsonBody.put("locationType", "Point")
-
-            // Correct coordinates
-            val latitude = 15.8392
-            val longitude = 74.5557
-
-            jsonBody.put("locationCoordinates[0]", latitude)
-            jsonBody.put("locationCoordinates[1]", longitude)
-
-            Log.d("PostDonation", "JSON Body: $jsonBody")
-            // Show progress bar
-            progressBar.visibility = View.VISIBLE
-
-            val jsonObjectRequest = JsonObjectRequest(
-                Request.Method.POST, url, jsonBody,
-                { response ->
-                    // Handle response
-                    progressBar.visibility = View.GONE
-                    successAnimation.visibility = View.VISIBLE
-                    successAnimation.playAnimation()
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        successAnimation.visibility = View.GONE
-                        Toast.makeText(requireContext(), "Donation posted successfully!", Toast.LENGTH_SHORT).show()
-                        Log.d("PostDonation", "Response: $response")
-                        clearFields()
-                    }, 3000) // Delay for 3 seconds before hiding the animation
-                },
-                { error ->
-                    // Handle error
-                    progressBar.visibility = View.GONE
-                    val responseBody = error.networkResponse?.data?.let { String(it) }
-                    val statusCode = error.networkResponse?.statusCode
-                    Toast.makeText(requireContext(), "Failed to post donation: ${error.message}", Toast.LENGTH_SHORT).show()
-                    Log.d("PostDonation", "Error: ${error.message}")
-                    Log.d("PostDonation", "Status Code: $statusCode")
-                    Log.d("PostDonation", "Response Body: $responseBody")
-                }
-            )
-
-            val requestQueue = Volley.newRequestQueue(requireContext())
-            requestQueue.add(jsonObjectRequest)
+            jsonBody.put("instructions", instruction.text.toString())
         } catch (e: Exception) {
             e.printStackTrace()
-            progressBar.visibility = View.GONE
-            Toast.makeText(requireContext(), "An error occurred while constructing the JSON body: ${e.message}", Toast.LENGTH_SHORT).show()
-            Log.d("PostDonation", "JSON Error: ${e.message}")
-        }
-    }
-
-    private fun convertImageUriToBase64(imageUri: Uri?): String {
-        if (imageUri == null) {
-            Log.e("ConvertImage", "Image URI is null")
-            return ""
         }
 
-        try {
-            val inputStream = requireContext().contentResolver.openInputStream(imageUri)
-            val bytes = inputStream?.readBytes()
-            inputStream?.close()
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, url, jsonBody,
+            { response ->
+                progressBar.visibility = View.GONE
+                Toast.makeText(requireContext(), "Post Successfully Uploaded!", Toast.LENGTH_SHORT).show()
+                startSuccessAnimation()
 
-            if (bytes != null && bytes.isNotEmpty()) {
-                return Base64.encodeToString(bytes, Base64.DEFAULT)
-            } else {
-                Log.e("ConvertImage", "Byte array is null or empty")
+                // Optionally update UI or handle success state here
+                // For example, update a RecyclerView or other UI elements
+
+            },
+            { error ->
+                progressBar.visibility = View.GONE
+                Toast.makeText(requireContext(), "Failed to Upload Post!", Toast.LENGTH_SHORT).show()
+                Log.e("Post", "Error: ${error.message}", error)
             }
-        } catch (e: Exception) {
-            Log.e("ConvertImage", "Error converting image to base64: ${e.message}")
+        )
+
+
+        val requestQueue = Volley.newRequestQueue(requireContext())
+        requestQueue.add(jsonObjectRequest)
+    }
+
+    private fun startSuccessAnimation() {
+        progressBar.visibility = View.GONE
+        successAnimation.visibility = View.VISIBLE
+        successAnimation.playAnimation()
+        successAnimation.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator) {}
+            override fun onAnimationEnd(animation: Animator) {
+                successAnimation.visibility = View.GONE
+            }
+            override fun onAnimationCancel(animation: Animator) {}
+            override fun onAnimationRepeat(animation: Animator) {}
+        })
+    }
+
+    private fun compressBitmap(bitmap: Bitmap, maxFileSizeKB: Int): Bitmap {
+        var quality = 100
+        var compressedBitmap: Bitmap = bitmap
+        val byteArrayOutputStream = ByteArrayOutputStream()
+
+        do {
+            byteArrayOutputStream.reset()
+            compressedBitmap.compress(Bitmap.CompressFormat.JPEG, quality, byteArrayOutputStream)
+            quality -= 5
+        } while (byteArrayOutputStream.size() / 1024 > maxFileSizeKB)
+
+        val byteArray = byteArrayOutputStream.toByteArray()
+        compressedBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+        return compressedBitmap
+    }
+
+    private fun encodeParameters(params: Map<String, String>, encoding: String): ByteArray {
+        val encodedParams = StringBuilder()
+        for ((key, value) in params) {
+            if (encodedParams.isNotEmpty()) {
+                encodedParams.append('&')
+            }
+            try {
+                encodedParams.append(URLEncoder.encode(key, encoding))
+                encodedParams.append('=')
+                encodedParams.append(URLEncoder.encode(value, encoding))
+            } catch (e: UnsupportedEncodingException) {
+                throw RuntimeException("Encoding not supported: $encoding", e)
+            }
         }
-
-        return ""
-    }
-
-
-    private fun clearFields() {
-        name.text.clear()
-        quantity.text.clear()
-        availableDate.text.clear()
-        expiryDate.text.clear()
-        description.text.clear()
-        instruction.text.clear()
-        contactPerson.text.clear()
-        foodImage.setImageURI(null)
-        spinnerType.setSelection(0)
-        spinnerCategory.setSelection(0)
-        spinnerIdeal.setSelection(0)
-        spinnerTrans.setSelection(0)
-        imageUri = null
-    }
-
-    companion object {
-        const val RESULT_OK = -1
+        return encodedParams.toString().toByteArray(charset(encoding))
     }
 }

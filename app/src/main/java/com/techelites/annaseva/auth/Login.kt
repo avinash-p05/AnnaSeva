@@ -42,7 +42,7 @@ class Login : AppCompatActivity() {
         radioVolunteer = findViewById(R.id.radioVolunteer)
 
         LtoR.setOnClickListener {
-            val intent2 = Intent(Intent.ACTION_VIEW, Uri.parse("https://your-registration-url.com"))
+            val intent2 = Intent(Intent.ACTION_VIEW, Uri.parse("http://annaseva.ajinkyatechnologies.in/api/register"))
             startActivity(intent2)
             finish()
         }
@@ -78,7 +78,7 @@ class Login : AppCompatActivity() {
             else -> "user"
         }
 
-        val baseUrl = "http://10.0.2.2:5000/api/"
+        val baseUrl = "http://annaseva.ajinkyatechnologies.in/api/"
         val loginRequest = LoginRequest(emailText, passText, role)
         val loginRequestV = LoginRequestVolunteer(emailText, passText)
         Log.d("Login", "Request Body: $loginRequestV")

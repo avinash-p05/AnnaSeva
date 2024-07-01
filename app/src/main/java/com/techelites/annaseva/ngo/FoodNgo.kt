@@ -53,4 +53,3 @@ data class LocationNgo(
     val coordinates: List<Double>
 ): Parcelable
 
-

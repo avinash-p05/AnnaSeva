@@ -13,30 +13,12 @@ import com.techelites.annaseva.R
 
 class NotificationDetailsActivity : AppCompatActivity() {
 
-//    private lateinit var messageTextView: TextView
-//    private lateinit var acceptButton: Button
-//    private lateinit var rejectButton: Button
-//
-//    @SuppressLint("MissingInflatedId")
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_notification_details)
-//
-//        messageTextView = findViewById(R.id.messageTextView)
-//        acceptButton = findViewById(R.id.acceptButton)
-//        rejectButton = findViewById(R.id.rejectButton)
-//
-//        val notification = intent.getSerializableExtra("notification")
-//        notification?.let {
-//            messageTextView.text = it.message
-//
-//            acceptButton.setOnClickListener {
-//                // Handle accept request logic
-//            }
-//
-//            rejectButton.setOnClickListener {
-//                // Handle reject request logic
-//            }
-//        }
-//    }
+
+    @SuppressLint("MissingInflatedId")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_notification_details)
+
+
+    }
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@color/hotelbg"
     tools:context=".hotel.Notification">
 
     <!-- Top Navigation Bar -->
@@ -45,7 +45,7 @@
         android:padding="@dimen/_16sdp"
         android:text="Notifications"
         android:textAlignment="center"
-        android:textColor="@color/main"
+        android:textColor="@color/hotelmain"
         android:textSize="@dimen/_16sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

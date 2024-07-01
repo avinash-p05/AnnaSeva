@@ -50,7 +50,7 @@ class RequestsAdapter(
             jsonObject.toString()
         )
         val request = Request.Builder()
-            .url("http://10.0.2.2:5000/api/donation/request/status")
+            .url("http://annaseva.ajinkyatechnologies.in/api/donation/request/status")
             .post(requestBody)
             .build()
 

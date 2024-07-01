@@ -3,18 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
+    app:cardCornerRadius="@dimen/_16sdp"
     android:layout_marginVertical="@dimen/_16sdp">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/main"
+    android:background="@color/hoteltext"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/messageTextView"
-        android:textColor="@color/white"
+        android:textColor="@color/hoteltextfield"
         android:lineSpacingExtra="@dimen/_6sdp"
         android:fontFamily="@font/epilogue"
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
         android:backgroundTint="@color/white"
         android:id="@+id/viewMoreButton"
         android:fontFamily="@font/epilogue_semibold"
-        android:textColor="@color/main"
+        android:textColor="@color/hoteltextfield"
         android:layout_marginStart="@dimen/_150sdp"
         android:layout_marginTop="@dimen/_16sdp"
         android:textStyle="normal"

@@ -15,7 +15,7 @@ class NotificationsAdapterNgo(
 ) : RecyclerView.Adapter<NotificationsAdapterNgo.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.notification_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.notification_item_ngo, parent, false)
         return ViewHolder(view)
     }
 

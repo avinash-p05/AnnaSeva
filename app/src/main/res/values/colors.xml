@@ -6,4 +6,10 @@
     <color name ="bg">#DEDEDE</color>
     <color name="textfield">#FFFFFF</color>
     <color name="text">#4E4D4C</color>
+    <color name="hotelmain">#F26E0D</color>
+    <color name="volumain">#fca311</color>
+    <color name="hoteltextfield">#382E29</color>
+    <color name="hoteltext">#BAA89C</color>
+    <color name ="hotelbg">#171412</color>
+    <color name="volunbg">#e5e5e5</color>
 </resources>

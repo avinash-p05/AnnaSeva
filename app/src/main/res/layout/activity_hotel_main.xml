@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/main"
+        android:background="@color/hotelmain"
         android:elevation="22dp"
         app:itemActiveIndicatorStyle="@color/textfield"
         app:itemIconSize="@dimen/_24sdp"

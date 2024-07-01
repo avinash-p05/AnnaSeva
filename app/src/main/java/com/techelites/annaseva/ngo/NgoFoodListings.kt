@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.techelites.annaseva.R
-import com.techelites.annaseva.common.FoodDetailsActivity
+import com.techelites.annaseva.volunteer.FoodDetailsActivity
 import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -60,7 +60,7 @@ class NgoFoodListings : Fragment(), FoodAdapterNgo.OnRecipeClickListener {
         userId = pref.getString("userid","").toString()
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("http://10.0.2.2:5000/api/donation/ngos/$userId/donations") // Replace with your actual API URL
+            .url("http://annaseva.ajinkyatechnologies.in/api/donation/ngos/$userId/donations") // Replace with your actual API URL
             .build()
 
         client.newCall(request).enqueue(object : Callback {

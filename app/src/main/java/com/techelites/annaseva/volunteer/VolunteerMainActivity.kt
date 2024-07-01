@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.techelites.annaseva.R
 import com.techelites.annaseva.hotel.Home
+import com.techelites.annaseva.hotel.HotelDashboard
 import com.techelites.annaseva.hotel.Notification
 import com.techelites.annaseva.hotel.Profile
 
@@ -22,7 +23,7 @@ class VolunteerMainActivity : AppCompatActivity() {
                 menuItem ->
             when(menuItem.itemId){
                 R.id.nav_home ->{
-                    loadFrag(Home())
+                    loadFrag(HotelDashboard())
                     true
                 }
                 R.id.nav_post ->{
@@ -31,11 +32,11 @@ class VolunteerMainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_notification -> {
-                    loadFrag(Notification())
+                    loadFrag(VolunNotifications())
                     true
                 }
                 R.id.nav_profile -> {
-                    loadFrag((Profile()))
+                    loadFrag((VolunteerProfile()))
                     true
                 }
                 else -> false

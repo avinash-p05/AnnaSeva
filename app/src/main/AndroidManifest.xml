@@ -20,6 +20,12 @@
         android:theme="@style/Theme.AnnaSeva"
         tools:targetApi="31">
         <activity
+            android:name=".volunteer.FoodDetailsVolunteer"
+            android:exported="false" />
+        <activity
+            android:name=".ngo.NgoProfile"
+            android:exported="false" />
+        <activity
             android:name=".TrackOrderActivity"
             android:exported="false" />
         <activity

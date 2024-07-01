@@ -12,12 +12,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.JsonParser
+import com.squareup.picasso.Picasso
 import com.techelites.annaseva.R
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
+import okhttp3.*
 import java.io.IOException
 
 class FoodAdapterNgo(
@@ -25,15 +22,11 @@ class FoodAdapterNgo(
     private val context: Context,
     private val listener: OnRecipeClickListener
 ) : RecyclerView.Adapter<FoodAdapterNgo.ViewHolder>() {
+
     private val openCageApiKey = "3216512d44244bf1acd0fd1398aa2652"
 
     interface OnRecipeClickListener {
         fun onRecipeClick(recipe: FoodNgo)
-    }
-
-    interface GeocodeCallback {
-        fun onGeocodeSuccess(formattedLocation: String)
-        fun onGeocodeFailure(message: String)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -62,9 +55,17 @@ class FoodAdapterNgo(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipe = recipes[position]
+
+        // Bind data to views
         holder.nameF.text = recipe.name
         holder.hotelF.text = recipe.hotel.name
         holder.dateF.text = recipe.createdAt
+
+        // Load image using Picasso
+        val imageUrl = "http://annaseva.ajinkyatechnologies.in/${recipe.uploadPhoto}"
+        Picasso.get().load(imageUrl).into(holder.imageView)
+
+        // Geocode location and update locationF TextView
         recipe.hotel.location.coordinates?.let {
             geocodeLocation(it.toString(), object : GeocodeCallback {
                 override fun onGeocodeSuccess(formattedLocation: String) {
@@ -123,5 +124,10 @@ class FoodAdapterNgo(
                 }
             }
         })
+    }
+
+    interface GeocodeCallback {
+        fun onGeocodeSuccess(formattedLocation: String)
+        fun onGeocodeFailure(message: String)
     }
 }

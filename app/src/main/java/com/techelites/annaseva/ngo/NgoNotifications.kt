@@ -43,7 +43,7 @@ class NgoNotifications : Fragment() {
 
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("http://10.0.2.2:5000/api/donation/notifications/$userId")
+            .url("http://annaseva.ajinkyatechnologies.in/api/donation/notifications/$userId")
             .build()
 
         client.newCall(request).enqueue(object : Callback {

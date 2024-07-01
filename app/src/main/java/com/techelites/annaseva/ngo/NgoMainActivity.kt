@@ -34,7 +34,7 @@ class NgoMainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_profile -> {
-                    loadFrag((Profile()))
+                    loadFrag((NgoProfile()))
                     true
                 }
                 else -> false
