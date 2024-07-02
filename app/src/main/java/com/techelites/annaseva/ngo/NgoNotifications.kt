@@ -76,10 +76,10 @@ class NgoNotifications : Fragment() {
                                         recipient = it.get("recipient")?.asString ?: "",
                                         message = it.get("message")?.asString ?: "",
                                         type = it.get("type")?.asString ?: "",
-                                        metadata = Metadata(donationId = donationId, ngoId = ngoId),
+                                        metadata = Metadata(donationId = donationId),
                                         read = it.get("read")?.asBoolean ?: false,
                                         createdAt = it.get("createdAt")?.asString ?: "",
-                                        __v = it.get("__v")?.asInt ?: 0
+
                                     )
                                 }
 

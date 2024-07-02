@@ -15,6 +15,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
+import com.techelites.annaseva.MainActivity
 import com.techelites.annaseva.R
 import com.techelites.annaseva.auth.Start
 
@@ -71,6 +72,9 @@ class VolunteerProfile : Fragment() {
                 progressBar.visibility = View.GONE
                 val intentStart = Intent(requireContext(), Start::class.java)
                 startActivity(intentStart)
+
+
+
 
             }
             handler.postDelayed(runnable,2000)

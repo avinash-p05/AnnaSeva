@@ -18,7 +18,7 @@ class VolunteerMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_volunteer_main)
 
         bottomBar = findViewById(R.id.bnViewNgo)
-        loadFrag(Home())
+        loadFrag(HotelDashboard())
         bottomBar.setOnItemSelectedListener{
                 menuItem ->
             when(menuItem.itemId){

@@ -13,11 +13,10 @@ data class Notification(
     val metadata: Metadata,
     val read: Boolean,
     val createdAt: String,
-    val __v: Int
 ) : Serializable
 
 
 data class Metadata(
     val donationId: String,
-    val ngoId: String
+    val qrCodePath: String? = null
 ) : Serializable

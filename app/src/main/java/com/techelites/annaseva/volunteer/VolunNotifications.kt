@@ -71,17 +71,16 @@ class VolunNotifications : Fragment() {
                                 val notifications = notificationsJsonArray.mapNotNull { it.asJsonObject }.map {
                                     val metadataObject = it.getAsJsonObject("metadata")
                                     val donationId = metadataObject?.get("donationId")?.asString ?: ""
-                                    val ngoId = metadataObject?.get("ngoId")?.asString ?: ""
+                                    val qrCodePath = metadataObject?.get("qrCodePath")?.asString ?: ""
 
                                     Notification(
                                         _id = it.get("_id")?.asString ?: "",
                                         recipient = it.get("recipient")?.asString ?: "",
                                         message = it.get("message")?.asString ?: "",
                                         type = it.get("type")?.asString ?: "",
-                                        metadata = Metadata(donationId = donationId, ngoId = ngoId),
+                                        metadata = Metadata(donationId = donationId, qrCodePath = qrCodePath),
                                         read = it.get("read")?.asBoolean ?: false,
                                         createdAt = it.get("createdAt")?.asString ?: "",
-                                        __v = it.get("__v")?.asInt ?: 0
                                     )
                                 }
 

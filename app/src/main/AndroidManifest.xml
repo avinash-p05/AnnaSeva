@@ -20,6 +20,9 @@
         android:theme="@style/Theme.AnnaSeva"
         tools:targetApi="31">
         <activity
+            android:name=".volunteer.VolunNotificationDetails"
+            android:exported="false" />
+        <activity
             android:name=".volunteer.FoodDetailsVolunteer"
             android:exported="false" />
         <activity
@@ -38,7 +41,7 @@
             android:name=".hotel.HotelFoodDetails"
             android:exported="false" />
         <activity
-            android:name=".common.FoodDetailsActivity"
+            android:name=".volunteer.FoodDetailsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
