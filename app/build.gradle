@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
         id 'kotlin-parcelize'
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -10,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.techelites.annaseva"
-        minSdk 24
+        minSdk 21
         targetSdk 34
         versionCode 1
         versionName "1.0"
@@ -37,10 +38,18 @@ android {
 }
 
 dependencies {
+    implementation ('com.google.guava:guava:32.0.1-android') {
+        exclude group: 'com.google.guava', module: 'listenablefuture'
+    }
+
+        implementation 'org.osmdroid:osmdroid-android:6.1.11'
+        implementation 'org.osmdroid:osmdroid-mapsforge:6.1.11'
+
+    implementation("com.vanniktech:android-image-cropper:4.6.0")
+
+
     implementation libs.zxing.android.embedded
     implementation libs.picasso
-
-
     implementation libs.okhttp
     implementation libs.androidx.espresso.core
     implementation libs.gson
@@ -49,6 +58,9 @@ dependencies {
     implementation(libs.glide)
     implementation libs.volley
     implementation libs.androidx.ui.desktop
+    implementation libs.firebase.messaging
+    implementation libs.androidx.compiler
+    implementation libs.firebase.storage.ktx
     annotationProcessor(libs.compiler)
     implementation libs.retrofit
     implementation libs.converter.gson

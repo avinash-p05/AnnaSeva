@@ -1,15 +1,21 @@
 package com.techelites.annaseva.volunteer
 
+import FoodNgo
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.airbnb.lottie.LottieAnimationView
 import com.google.gson.JsonParser
 import com.google.zxing.integration.android.IntentIntegrator
 import com.squareup.picasso.Picasso
@@ -25,6 +31,18 @@ class VolunNotificationDetails : AppCompatActivity() {
     private lateinit var userId: String
     private lateinit var binding: ActivityVolunNotificationDetailsBinding
 
+    private lateinit var foodName: TextView
+    private lateinit var foodImage: ImageView
+    private lateinit var foodCategory: TextView
+    private lateinit var foodQuantity: TextView
+    private lateinit var foodExpiry: TextView
+    private lateinit var foodIdealFor: TextView
+    private lateinit var foodPickupInstructions: TextView
+    private lateinit var foodDescription: TextView
+    private lateinit var foodType: TextView
+    private lateinit var trackButton: Button
+    private val openCageApiKey = "3216512d44244bf1acd0fd1398aa2652"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityVolunNotificationDetailsBinding.inflate(layoutInflater)
@@ -32,90 +50,45 @@ class VolunNotificationDetails : AppCompatActivity() {
 
         // Retrieve userId from SharedPreferences
         val pref = getSharedPreferences("login", Context.MODE_PRIVATE)
-        userId = pref.getString("userid", "").toString()
+        userId = pref.getString("userId", "").toString()
+
+        foodName = findViewById(R.id.tvDonationName)
+        foodImage = findViewById(R.id.imageViewD)
+        foodType = findViewById(R.id.foodType)
+        foodCategory = findViewById(R.id.tvDonationCategory)
+        foodQuantity = findViewById(R.id.tvDonationQuantity)
+        foodExpiry = findViewById(R.id.tvDonationExpiry)
+        foodIdealFor = findViewById(R.id.tvDonationIdealFor)
+        foodPickupInstructions = findViewById(R.id.tvDonationPickupInstructions)
+        foodDescription = findViewById(R.id.tvDonationDescription)
+        trackButton = findViewById(R.id.btnTrackOrder)
 
 
         // Check if the notification message contains "New Donation added"
 
-        val donationId = intent.getStringExtra("donationId")
-        Log.d("VolunNotificationDetails", "Donation ID: $donationId")
-
-        if (donationId != null) {
-                    fetchDonationDetails(donationId)
-                }
-        else {
-                Toast.makeText(this, "Invalid donation ID", Toast.LENGTH_SHORT).show()
-                finish()
-            }
+        val foodItem = intent.getParcelableExtra<FoodNgo>("foodItem")
+        foodItem?.let {
+            updateUI(it)
+        }
 
         binding.btnTrackOrder.setOnClickListener {
-            if (donationId != null) {
-                fetchTrackingDetails(donationId)
+            if (foodItem != null) {
+                fetchTrackingDetails(foodItem.id)
             }
         }
     }
 
-    private fun fetchDonationDetails(donationId: String) {
-        val client = OkHttpClient()
-        val request = Request.Builder()
-            .url("http://annaseva.ajinkyatechnologies.in/api/donation/getDonationById?id=$donationId")
-            .build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                runOnUiThread {
-                    Log.e("NgoNotificationsDetails", "Failed to fetch donation details: ${e.message}")
-                    Toast.makeText(this@VolunNotificationDetails, "Failed to load donation details", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                if (response.isSuccessful) {
-                    response.body?.let { responseBody ->
-                        try {
-                            val responseString = responseBody.string()
-                            val jsonObject = JsonParser.parseString(responseString).asJsonObject
-                            val donationJson = jsonObject.getAsJsonObject("donation")
-
-                            runOnUiThread {
-                                val imageUrl = "http://annaseva.ajinkyatechnologies.in/${donationJson.get("uploadPhoto")?.asString}"
-                                Picasso.get().load(imageUrl).into(binding.imageViewD)
-                                binding.foodType.text = donationJson.get("type")?.asString?: ""
-                                binding.tvDonationName.text = donationJson.get("name")?.asString ?: ""
-                                binding.tvDonationDescription.text = donationJson.get("description")?.asString ?: ""
-                                binding.tvDonationCategory.text = donationJson.get("category")?.asString ?: ""
-                                binding.tvDonationQuantity.text = donationJson.get("quantity")?.asInt?.toString() ?: ""
-                                binding.tvDonationExpiry.text = donationJson.get("expiry")?.asString ?: ""
-                                binding.tvDonationIdealFor.text = donationJson.get("idealfor")?.asString ?: ""
-                                binding.tvDonationPickupInstructions.text = donationJson.get("pickupInstructions")?.asString ?: ""
-                            }
-                        } catch (e: Exception) {
-                            runOnUiThread {
-                                Log.e("NgoNotificationsDetails", "Error parsing donation details: ${e.message}")
-                                Toast.makeText(this@VolunNotificationDetails, "Error parsing donation details", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    }
-                } else {
-                    runOnUiThread {
-                        Log.e("NgoNotificationsDetails", "Failed to fetch donation details: ${response.code} - ${response.message}")
-                        Toast.makeText(this@VolunNotificationDetails, "Failed to load donation details", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        })
-    }
 
     private fun fetchTrackingDetails(donationId: String) {
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("http://annaseva.ajinkyatechnologies.in/api/tracking/tracking/donation?id=$donationId")
+            .url("https://anna-seva-backend.onrender.com/tracking/status/$donationId")
             .build()
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 runOnUiThread {
-                    Log.e("NgoNotificationsDetails", "Failed to fetch tracking details: ${e.message}")
+                    Log.e("VolunNotificationDetails", "Failed to fetch tracking details: ${e.message}")
                     Toast.makeText(this@VolunNotificationDetails, "Failed to load tracking details", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -130,33 +103,29 @@ class VolunNotificationDetails : AppCompatActivity() {
 
                             runOnUiThread {
                                 if (success) {
-                                    val trackingRecords = jsonObject.getAsJsonArray("trackingRecords")
-                                    if (trackingRecords.size() > 0) {
-                                        val status = trackingRecords[0].asJsonObject.get("status")?.asString ?: ""
-                                        showStatusDialog(status)
-                                    } else {
-                                        Toast.makeText(this@VolunNotificationDetails, "Tracking records not found", Toast.LENGTH_SHORT).show()
-                                    }
+                                    val status = jsonObject.get("message")?.asString ?: ""
+                                    showStatusDialog(status)
                                 } else {
                                     Toast.makeText(this@VolunNotificationDetails, "Failed to fetch tracking details", Toast.LENGTH_SHORT).show()
                                 }
                             }
                         } catch (e: Exception) {
                             runOnUiThread {
-                                Log.e("NgoNotificationsDetails", "Error parsing tracking details: ${e.message}")
+                                Log.e("VolunNotificationDetails", "Error parsing tracking details: ${e.message}")
                                 Toast.makeText(this@VolunNotificationDetails, "Error parsing tracking details", Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
                 } else {
                     runOnUiThread {
-                        Log.e("NgoNotificationsDetails", "Failed to fetch tracking details: ${response.code} - ${response.message}")
+                        Log.e("VolunNotificationDetails", "Failed to fetch tracking details: ${response.code} - ${response.message}")
                         Toast.makeText(this@VolunNotificationDetails, "Failed to load tracking details", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         })
     }
+
 
     private fun showStatusDialog(status: String) {
         val dialogBuilder = AlertDialog.Builder(this)
@@ -196,17 +165,11 @@ class VolunNotificationDetails : AppCompatActivity() {
 
     private fun updateStatusToDelivered(trackingId: String) {
         val client = OkHttpClient()
-        val jsonBody = """
-            {
-                "ngoId": "$userId",
-                "location": "Mahesh Foundation",
-                "percentageReached": "100"
-            }
-        """.trimIndent()
-        val requestBody = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), jsonBody)
+
+        val requestBody = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), "{}")
         val request = Request.Builder()
-            .url("http://annaseva.ajinkyatechnologies.in/api/tracking/scan/ngo?id=$trackingId")
-            .post(requestBody)
+            .url("https://anna-seva-backend.onrender.com/tracking/ngo/$trackingId")
+            .put(requestBody)
             .build()
 
         client.newCall(request).enqueue(object : Callback {
@@ -241,5 +204,20 @@ class VolunNotificationDetails : AppCompatActivity() {
         }
         val alertDialog = dialogBuilder.create()
         alertDialog.show()
+    }
+
+    private fun updateUI(food: FoodNgo) {
+        val imageUrl = food.imageUrl
+        Picasso.get().load(imageUrl).into(foodImage)
+        // Update UI with food details
+        foodType.text = food.type
+        foodName.text = food.name
+        foodCategory.text = food.category
+        foodQuantity.text = food.quantity.toString()
+        foodExpiry.text = food.expiry.toString()
+        foodIdealFor.text = food.idealFor
+        foodDescription.text = food.description
+        foodPickupInstructions.text = food.pickupInstructions
+
     }
 }

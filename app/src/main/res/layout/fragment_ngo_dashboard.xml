@@ -4,109 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e5e5e5"
-    tools:context=".ngo.NgoDashboard">
+    android:background="#000000"
+    tools:context=".ngo.RequestedDonationsListings">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="12dp"
-        android:fontFamily="@font/epilogue_semibold"
-        android:gravity="center_horizontal"
-        android:text="Total"
-        android:textAlignment="center"
-        android:textColor="@color/main"
-        android:textSize="@dimen/_18ssp"
-        android:textStyle="bold"
+    <ProgressBar
+        android:id="@+id/progressBarN2"
+        style="@style/CustomProgressBarhw"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.263"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewN2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="12dp"
-        android:fontFamily="@font/epilogue"
-        android:gravity="center_horizontal"
-        android:text="Found"
-        android:textAlignment="center"
-        android:textColor="@color/main"
-        android:textSize="@dimen/_18ssp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.761"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161" />
-
-    <TextView
-        android:id="@+id/lostcount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="12dp"
-        android:fontFamily="@font/epilogue_semibold"
+        android:fontFamily="@font/epilogue_bold"
         android:gravity="center"
-        android:padding="0dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_45ssp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.302"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
-
-    <TextView
-        android:id="@+id/foundcount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="12dp"
-        android:fontFamily="@font/epilogue"
-        android:gravity="center"
-        android:padding="0dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_45ssp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
-
-    <TextView
-        android:id="@+id/instructionsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="12dp"
-        android:fontFamily="@font/epilogue"
-        android:lineSpacingExtra="@dimen/_5sdp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:text="Instructions:\n1. Welcome to our application!
-\n2. Explore the Home section to review the overall report count.
-\n3. Move to the adjacent Report Center to submit meticulous reports for lost or found items.
-   \n- Ensure reports are detailed and refrain from inappropriate content.
-\n4. Access the Messages feature to peruse user-submitted reports.
-   \n- Click on specific items for in-depth information.
-\n5. Visit the Profile section to view and manage your user data.
-"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_12ssp"
-        android:textStyle="normal"
+        android:padding="@dimen/_16sdp"
+        android:text="Requested Donations"
+        android:textColor="@color/volumain"
+        android:textSize="@dimen/_18ssp"
+        app:flow_horizontalAlign="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/foundcount"
-        app:layout_constraintVertical_bias="0.753" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipeViewN2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:paddingBottom="@dimen/_50sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewN2"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

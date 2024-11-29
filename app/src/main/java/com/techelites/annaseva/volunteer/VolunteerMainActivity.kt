@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.techelites.annaseva.R
-import com.techelites.annaseva.hotel.Home
-import com.techelites.annaseva.hotel.HotelDashboard
-import com.techelites.annaseva.hotel.Notification
-import com.techelites.annaseva.hotel.Profile
+import com.techelites.annaseva.hotel.AcceptedRequestsListings
 
 class VolunteerMainActivity : AppCompatActivity() {
     private lateinit var bottomBar: BottomNavigationView
@@ -18,12 +15,12 @@ class VolunteerMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_volunteer_main)
 
         bottomBar = findViewById(R.id.bnViewNgo)
-        loadFrag(HotelDashboard())
+        loadFrag(AcceptedRequestsListings())
         bottomBar.setOnItemSelectedListener{
                 menuItem ->
             when(menuItem.itemId){
                 R.id.nav_home ->{
-                    loadFrag(HotelDashboard())
+                    loadFrag(AcceptedRequestsListings())
                     true
                 }
                 R.id.nav_post ->{

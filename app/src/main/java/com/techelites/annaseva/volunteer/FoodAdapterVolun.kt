@@ -62,7 +62,7 @@ class FoodAdapterVolun(
         holder.dateF.text = recipe.createdAt
 
         // Load image using Picasso
-        val imageUrl = "http://annaseva.ajinkyatechnologies.in/${recipe.uploadPhoto}"
+        val imageUrl = "http://annaseva.ajinkyatechnologies.in/${recipe.imageUrl}"
         Picasso.get().load(imageUrl).into(holder.imageView)
 
         // Geocode location and update locationF TextView

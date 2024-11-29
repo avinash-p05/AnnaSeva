@@ -14,17 +14,27 @@
         android:layout_height="wrap_content">
 
 
+        <org.osmdroid.views.MapView
+            android:id="@+id/map"
+            android:layout_width="406dp"
+            android:layout_height="263dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.625"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locationTextView"
+            app:layout_constraintVertical_bias="0.963" />
 
         <Spinner
             android:id="@+id/spinnerType"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_20sdp"
+            android:background="@color/white"
             android:elevation="@dimen/_20sdp"
             android:gravity="center"
             android:paddingHorizontal="@dimen/_16sdp"
             android:prompt="@string/spinner_prompt"
             android:textAlignment="center"
-            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.843"
@@ -36,12 +46,12 @@
             android:id="@+id/spinnerIdeal"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_20sdp"
+            android:background="@color/white"
             android:elevation="@dimen/_20sdp"
             android:gravity="center"
             android:paddingHorizontal="@dimen/_16sdp"
             android:prompt="@string/spinner_prompt"
             android:textAlignment="center"
-            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/tex33"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.747"
@@ -53,9 +63,9 @@
             android:id="@+id/spinnerTrans"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_20sdp"
+            android:background="@color/white"
             android:elevation="@dimen/_20sdp"
             android:gravity="center"
-            android:background="@color/white"
             android:paddingHorizontal="@dimen/_16sdp"
             android:prompt="@string/spinner_prompt"
             android:textAlignment="center"
@@ -70,11 +80,11 @@
             android:id="@+id/spinnerCategory"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_20sdp"
+            android:background="@color/white"
             android:elevation="@dimen/_20sdp"
             android:gravity="center"
             android:paddingHorizontal="@dimen/_16sdp"
             android:prompt="@string/spinner_prompt"
-            android:background="@color/white"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -238,6 +248,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ExpDate" />
 
+
         <EditText
             android:id="@+id/tagsU"
             android:layout_width="match_parent"
@@ -253,7 +264,7 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toTopOf="@+id/postBtn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.619"
+            app:layout_constraintHorizontal_bias="0.38"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             app:layout_constraintVertical_bias="0.5"
@@ -299,9 +310,10 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.523"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.899"
+            app:layout_constraintVertical_bias="0.914"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -361,7 +373,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/epilogue_semibold"
             android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_8sdp"
             android:text="Select your location"
             android:textColor="@color/hotelmain"
             android:textSize="@dimen/_14ssp"
@@ -370,7 +382,23 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.613" />
+            app:layout_constraintVertical_bias="0.612" />
+
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/epilogue"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_6sdp"
+            android:textColor="@color/hoteltext"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.632" />
 
         <TextView
             android:id="@+id/textView1476"
@@ -389,6 +417,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.527" />
 
+
         <TextView
             android:id="@+id/textView146"
             android:layout_width="match_parent"
@@ -404,8 +433,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.854" />
-
+            app:layout_constraintVertical_bias="0.871" />
 
         <TextView
             android:id="@+id/textView6"
@@ -577,17 +605,26 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            style="@style/CustomProgressBar"
+            style="@style/CustomProgressBarhm"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:visibility="gone"
             android:layout_gravity="center"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.768" />
+
+        <View
+            android:id="@+id/dim_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            android:alpha="0.5"
+            android:visibility="gone"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

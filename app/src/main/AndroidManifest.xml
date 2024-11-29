@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -25,9 +26,9 @@
         <activity
             android:name=".volunteer.FoodDetailsVolunteer"
             android:exported="false" />
-        <activity
-            android:name=".ngo.NgoProfile"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".ngo.NgoProfile"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".TrackOrderActivity"
             android:exported="false" />
@@ -41,7 +42,7 @@
             android:name=".hotel.HotelFoodDetails"
             android:exported="false" />
         <activity
-            android:name=".volunteer.FoodDetailsActivity"
+            android:name=".common.FoodDetailsActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -75,6 +76,13 @@
             android:name=".MainActivity"
             android:exported="false" />
 
+        <!-- Theme is optional and only needed if default theme has no action bar. -->
+        <activity
+            android:name="com.canhub.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"
+            />
+
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
@@ -84,6 +92,14 @@
         <meta-data
             android:name="OSMDROID_USERAGENTVALUE"
             android:value="com.techelites.annaseva" />
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

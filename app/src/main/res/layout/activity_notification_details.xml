@@ -1,470 +1,357 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/bg">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/hotelbg"
+    tools:context=".hotel.NotificationDetailsActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <android.widget.Button
+        android:id="@+id/btnTrackOrder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/_48sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:background="@drawable/btnh"
+        android:elevation="@dimen/_16sdp"
+        android:fontFamily="@font/epilogue_bold"
+        android:text="Track your Food"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDonationPickupInstructions"
+        app:layout_constraintVertical_bias="0.657" />
 
-        <!-- Adjusted constraints for the following TextViews -->
+    <TextView
+        android:id="@+id/tvDonationPickupInstructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="instruction\nasdfasd"
+        android:lineSpacingExtra="@dimen/_5sdp"
+        android:paddingHorizontal="@dimen/_26sdp"
+        android:paddingVertical="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tex333"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <android.widget.Button
-            android:id="@+id/deleteButton"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_48sdp"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_40sdp"
-            android:layout_marginBottom="@dimen/_30sdp"
-            android:background="@drawable/btn1"
-            android:elevation="@dimen/_16sdp"
-            android:fontFamily="@font/epilogue_bold"
-            android:text="Delete Post"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_16sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/foodLocation" />
+    <TextView
+        android:id="@+id/tex333"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Pickup Instructions"
+        android:textColor="@color/hotelmain"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/textView132"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Location"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.822" />
+    <TextView
+        android:id="@+id/tvDonationExpiry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="exp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/tvDonationIdealFor"
+        app:layout_constraintVertical_bias="0.003" />
 
-        <TextView
-            android:id="@+id/tex333"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Pickup Instructions"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.741" />
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
 
-        <TextView
-            android:id="@+id/tex33"
-            android:layout_width="408dp"
-            android:layout_height="36dp"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Description"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.342" />
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Expiry Date:"
+        android:textColor="@color/hotelmain"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/sss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Transportation"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.663" />
+    <TextView
+        android:id="@+id/tvDonationIdealFor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="ideal"
+        android:paddingVertical="@dimen/_5sdp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/tvDonationDescription"
+        app:layout_constraintVertical_bias="0.003" />
 
-        <TextView
-            android:id="@+id/ss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Contact Person"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.698" />
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Ideal For:"
+        android:textColor="@color/hotelmain"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDonationDescription"
+        app:layout_constraintVertical_bias="0.0" />
 
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Expiry Date:"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.713"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.449" />
+    <TextView
+        android:id="@+id/tvDonationDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="description "
+        android:lineSpacingExtra="@dimen/_5sdp"
+        android:paddingHorizontal="@dimen/_26sdp"
+        android:paddingVertical="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tex33"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/tex33"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Description"
+        android:textColor="@color/hotelmain"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView95"
+        app:layout_constraintVertical_bias="0.0" />
 
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Ideal For:"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.114"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.439" />
+    <TextView
+        android:id="@+id/tvDonationQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Type :"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.132"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.179" />
+        android:fontFamily="@font/epilogue"
+        android:hint="qty"
+        android:paddingVertical="@dimen/_5sdp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView95"
+        app:layout_constraintTop_toBottomOf="@+id/foodType"
+        app:layout_constraintVertical_bias="0.077" />
 
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Category :"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.112"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.237" />
+    <TextView
+        android:id="@+id/textView95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Quantity :"
+        android:textColor="@color/hotelmain"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/textView95"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Quantity :"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.096"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.286" />
+    <TextView
+        android:id="@+id/tvDonationCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="cat"
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_semibold"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:text="Available At :"
-            android:textColor="@color/main"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.626" />
+        android:paddingVertical="@dimen/_5sdp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/foodType"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/foodinstruction"
-            android:layout_width="411dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
-            android:hint="instruction\nasdfasd"
-            android:lineSpacingExtra="@dimen/_5sdp"
-            android:paddingHorizontal="@dimen/_26sdp"
-            android:paddingVertical="5dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.79" />
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Category :"
+        android:textColor="@color/hotelmain"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/foodDescription"
-            android:layout_width="411dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
-            android:hint="description asdfasdfasdfsadfasdfasdfasdf"
-            android:lineSpacingExtra="@dimen/_5sdp"
-            android:paddingHorizontal="@dimen/_26sdp"
-            android:paddingVertical="5dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.383" />
+    <TextView
+        android:id="@+id/foodType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue"
+        android:hint="Type"
 
-        <TextView
-            android:id="@+id/foodType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
-            android:hint="Type"
+        android:paddingVertical="@dimen/_5sdp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewD"
+        app:layout_constraintVertical_bias="0.061" />
 
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.09"
-            app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.178" />
+    <ImageView
+        android:id="@+id/imageViewD"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:elevation="@dimen/_16sdp"
 
-        <TextView
-            android:id="@+id/foodCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
-            android:hint="cat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDonationName"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/food" />
 
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.056"
-            app:layout_constraintStart_toEndOf="@+id/textView19"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.236" />
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_semibold"
+        android:paddingHorizontal="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="Type :"
+        android:textColor="@color/hotelmain"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewD"
+        app:layout_constraintVertical_bias="0.06" />
 
-        <TextView
-            android:id="@+id/foodQuantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/tvDonationName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/epilogue_bold"
+        android:gravity="center"
+        android:hint="Title"
+        android:padding="@dimen/_16sdp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="@dimen/_18ssp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.019" />
 
-            android:fontFamily="@font/epilogue"
-            android:hint="qty"
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.097"
-            app:layout_constraintStart_toEndOf="@+id/textView95"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.286" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvDonationName"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Donation Name" />-->
 
-        <TextView
-            android:id="@+id/foodAvailableAt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
-            android:hint="available"
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvDonationDescription"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Donation Description" />-->
 
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.626" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvDonationCategory"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Donation Category" />-->
 
-        <TextView
-            android:id="@+id/foodExpiry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
-            android:hint="exp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView13"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.59" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvDonationQuantity"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Donation Quantity" />-->
 
-        <TextView
-            android:id="@+id/foodIdealFor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
-            android:hint="ideal"
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView11"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.556" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvDonationExpiry"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Donation Expiry" />-->
 
-        <TextView
-            android:id="@+id/foodContactPerson"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
-            android:hint="contact"
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.012"
-            app:layout_constraintStart_toEndOf="@+id/ss"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.696" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvDonationIdealFor"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Donation Ideal For" />-->
 
-        <TextView
-            android:id="@+id/foodLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
-            android:hint="loc"
-            android:lineSpacingExtra="@dimen/_5sdp"
-            android:paddingHorizontal="@dimen/_16sdp"
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toTopOf="@+id/deleteButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView132"
-            app:layout_constraintVertical_bias="0.5" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvDonationPickupInstructions"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Donation Pickup Instructions" />-->
 
-        <TextView
-            android:id="@+id/foodTransportation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue"
-            android:hint="trans"
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/sss"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.663" />
+    <!--    <Button-->
+    <!--        android:id="@+id/btnTrackOrder"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Track Order" />-->
 
-        <TextView
-            android:id="@+id/foodDonationStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_bold"
-            android:hint="trans"
-            android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/main"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.713"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.023" />
-
-        <TextView
-            android:id="@+id/foodName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_bold"
-            android:gravity="center"
-            android:hint="Title"
-            android:padding="@dimen/_16sdp"
-            android:textColor="@color/main"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_18ssp"
-            app:flow_horizontalAlign="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.059" />
-
-        <ImageButton
-            android:id="@+id/backArrowDetials"
-            android:layout_width="50dp"
-            android:layout_height="44dp"
-            android:background="@color/bg"
-            android:src="@drawable/baseline_arrow_back_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.017" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

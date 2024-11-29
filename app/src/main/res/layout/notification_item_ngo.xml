@@ -10,31 +10,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/main"
+    android:background="@color/volumain"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/messageTextView"
+        android:id="@+id/titleTextViewN"
+        android:textColor="#FFFFFF"
+        android:lineSpacingExtra="@dimen/_6sdp"
+        android:fontFamily="@font/epilogue_semibold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:text="Notification Message asdfasdfasdfasdfsdfsdfsadfasd"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/messageTextViewN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/epilogue"
         android:lineSpacingExtra="@dimen/_6sdp"
         android:text="Notification Message asdfasdfasdfasdfsdfsdfsadfasd"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
-
-    <Button
-        android:elevation="@dimen/_5sdp"
-        android:backgroundTint="@color/white"
-        android:id="@+id/viewMoreButton"
-        android:fontFamily="@font/epilogue_semibold"
-        android:textColor="@color/hoteltextfield"
-        android:layout_marginStart="@dimen/_150sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:textStyle="normal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="View More" />
+        android:textColor="#FFFFFF"
+        android:textSize="13sp" />
 </LinearLayout>
 
 </androidx.cardview.widget.CardView>

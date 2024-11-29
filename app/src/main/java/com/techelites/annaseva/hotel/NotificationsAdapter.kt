@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.techelites.annaseva.AppNotification
 import com.techelites.annaseva.R
 
 class NotificationsAdapter(
@@ -16,7 +15,7 @@ class NotificationsAdapter(
 
     class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val messageTextView: TextView = itemView.findViewById(R.id.messageTextView)
-        val viewMoreButton: Button = itemView.findViewById(R.id.viewMoreButton)
+        val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
@@ -26,8 +25,8 @@ class NotificationsAdapter(
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
         val notification = notifications[position]
-        holder.messageTextView.text = notification.message
-        holder.viewMoreButton.setOnClickListener { onClick(notification) }
+        holder.messageTextView.text = notification.body
+        holder.titleTextView.text = notification.title
     }
 
     override fun getItemCount(): Int = notifications.size

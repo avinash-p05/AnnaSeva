@@ -2,82 +2,60 @@ package com.techelites.annaseva.auth
 
 import java.io.Serializable
 
-data class LoginRequest(val email: String, val password: String, val role: String)
+data class LoginRequest(val email: String, val password: String)
 data class LoginRequestVolunteer(val email: String, val password: String)
-
-data class LoginResponseUser(
-    val success: Boolean,
-    val token: String,
-    val user: User?
-)
 
 
 data class LoginResponseHotel(
     val success: Boolean,
-    val token: String,
-    val user: Hotel?
+    val message: String,
+    val data: Hotel?
 )
-
 
 
 data class LoginResponseNgo(
     val success: Boolean,
     val message: String,
-    val user: Ngo?
+    val data: Ngo?
 )
 
-data class User(
-    val _id: String,
-    val fullName: String,
-    val email: String,
-    val mobileNo: String,
-    val password: String,
-    val city: String,
-    val pincode: String,
-    val isDeleted: Boolean,
-    val donations: List<Any>,  // Adjust the type based on actual data
-    val events: List<Any>,     // Adjust the type based on actual data
-    val createdAt: String,
-    val updatedAt: String,
-    val __v: Int,
-    val userType: String
-)
 
 data class Hotel(
-    val location: Location,
-    val _id: String,
+    val id: String,
+    val token:String,
     val name: String,
     val email: String,
     val password: String,
     val address: String,
     val city: String,
     val state: String,
-    val pincode: String,
+    val pinCode: String,
+    val location: Location,
     val contactPerson: String,
     val contactNumber: String,
     val donations: List<Any>,  // Adjust the type based on actual data
-    val isDeleted: Boolean,
     val createdAt: String,
     val updatedAt: String,
-    val __v: Int
+    val verified: Boolean
 )
 
 data class Ngo(
-    val _id: String,
+    val id: String,
+    val token:String,
     val name: String,
     val email: String,
     val password: String,
     val address: String,
     val city: String,
     val state: String,
-    val pincode: String,
+    val pinCode: String,
+    val location: Location,
     val contactPerson: String,
     val contactNumber: String,
     val requestedDonations: List<String>,
-    val isDeleted: Boolean,
     val createdAt: String,
     val updatedAt: String,
-    val __v: Int
+    val verified: Boolean
 )
 
 data class LoginResponseVolunteer(
@@ -109,7 +87,7 @@ data class Volunteer(
 
 data class Location(
     val type: String,
-    val coordinates: List<Double>
+    val coordinates: DoubleArray = DoubleArray(2)
 )
 
 data class DonationsResponse(
@@ -118,30 +96,48 @@ data class DonationsResponse(
 )
 
 data class Donation(
-    val _id: String,
-    val location: Location,
+    val id: String,
     val type: String,
     val name: String,
     val description: String,
     val category: String,
     val quantity: Int,
     val expiry: String,
-    val idealfor: String,
+    val idealFor: String,
     val availableAt: String,
+    val location: Location,
     val transportation: String,
-    val uploadPhoto: String,
-    val requests: List<String>, // Change type as per actual data
+    val imageUrl: String,
+    val requests: Map<String,String>, // Change type as per actual data
     val contactPerson: String,
     val donationStatus: String,
     val pickupInstructions: String,
-    val hotel: String, // Change type as per actual data
-    val isUsable: Boolean,
-    val reports: List<String>, // Change type as per actual data
+    val hotel: Hotel, // Change type as per actual data
     val autoAssignStatus: String,
     val shipmentStatus: String,
     val hotelCoversTransport: Boolean,
-    val platformManagesTransport: Boolean,
     val createdAt: String,
     val updatedAt: String,
-    val __v: Int
 ) : Serializable
+
+data class UploadResponse(
+    val success: Boolean,
+    val message: String,
+    val data: Donation
+)
+
+data class DonationRequest(
+    val type: String,
+    val name: String,
+    val description: String,
+    val category: String,
+    val quantity: Int,
+    val expiry: String,
+    val idealFor: String,
+    val availableAt: String,
+    val location: Location,
+    val transportation: String,
+    val imageUrl: String,
+    val contactPerson: String,
+    val pickupInstructions: String
+)

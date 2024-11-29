@@ -90,7 +90,7 @@ class FoodDetailsVolunteer : AppCompatActivity() {
     }
 
     private fun updateUI(food: FoodNgo) {
-        val imageUrl = "http://annaseva.ajinkyatechnologies.in/${food.uploadPhoto}"
+        val imageUrl = "http://annaseva.ajinkyatechnologies.in/${food.imageUrl}"
         Picasso.get().load(imageUrl).into(foodImage)
         // Update UI with food details
         foodType.text = food.type
@@ -98,7 +98,7 @@ class FoodDetailsVolunteer : AppCompatActivity() {
         foodCategory.text = food.category
         foodQuantity.text = food.quantity.toString()
         foodExpiry.text = food.expiry.toString()
-        foodIdealFor.text = food.idealfor
+        foodIdealFor.text = food.idealFor
         foodAvailableAt.text = food.availableAt
         foodTransportation.text = food.transportation
         foodContactPerson.text = food.contactPerson

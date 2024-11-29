@@ -439,18 +439,18 @@
             android:id="@+id/foodDonationStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/epilogue_bold"
-            android:hint="trans"
+            android:fontFamily="@font/epilogue_semibold_italic"
+            android:hint="Available"
             android:paddingVertical="@dimen/_5sdp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/text"
-            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/main"
+            android:textColorHint="@color/main"
+            android:textSize="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.713"
+            app:layout_constraintHorizontal_bias="0.869"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.023" />
+            app:layout_constraintVertical_bias="0.014" />
 
         <ImageView
             android:id="@+id/imageViewD"

@@ -18,7 +18,7 @@ import okhttp3.*
 import java.io.IOException
 
 class FoodAdapterNgo(
-    private var recipes: ArrayList<FoodNgo>,
+    private var donations: ArrayList<FoodNgo>,
     private val context: Context,
     private val listener: OnRecipeClickListener
 ) : RecyclerView.Adapter<FoodAdapterNgo.ViewHolder>() {
@@ -26,7 +26,7 @@ class FoodAdapterNgo(
     private val openCageApiKey = "3216512d44244bf1acd0fd1398aa2652"
 
     interface OnRecipeClickListener {
-        fun onRecipeClick(recipe: FoodNgo)
+        fun onRecipeClick(donation: FoodNgo)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
@@ -43,7 +43,7 @@ class FoodAdapterNgo(
         override fun onClick(v: View?) {
             val position = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
-                listener.onRecipeClick(recipes[position])
+                listener.onRecipeClick(donations[position])
             }
         }
     }
@@ -54,19 +54,19 @@ class FoodAdapterNgo(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val recipe = recipes[position]
+        val donation = donations[position]
 
         // Bind data to views
-        holder.nameF.text = recipe.name
-        holder.hotelF.text = recipe.hotel.name
-        holder.dateF.text = recipe.createdAt
+        holder.nameF.text = donation.name
+        holder.hotelF.text = donation.hotel.name
+        holder.dateF.text = donation.createdAt
 
         // Load image using Picasso
-        val imageUrl = "http://annaseva.ajinkyatechnologies.in/${recipe.uploadPhoto}"
+        val imageUrl = donation.imageUrl
         Picasso.get().load(imageUrl).into(holder.imageView)
 
         // Geocode location and update locationF TextView
-        recipe.hotel.location.coordinates?.let {
+        donation.hotel.location.coordinates?.let {
             geocodeLocation(it.toString(), object : GeocodeCallback {
                 override fun onGeocodeSuccess(formattedLocation: String) {
                     Handler(Looper.getMainLooper()).post {
@@ -84,12 +84,12 @@ class FoodAdapterNgo(
     }
 
     override fun getItemCount(): Int {
-        return recipes.size
+        return donations.size
     }
 
     fun updateRecipes(newRecipes: List<FoodNgo>) {
-        recipes.clear()
-        recipes.addAll(newRecipes)
+        donations.clear()
+        donations.addAll(newRecipes)
         notifyDataSetChanged()
     }
 

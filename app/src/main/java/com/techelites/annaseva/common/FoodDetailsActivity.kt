@@ -1,4 +1,4 @@
-package com.techelites.annaseva.volunteer
+package com.techelites.annaseva.common
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -72,7 +72,7 @@ class FoodDetailsActivity : AppCompatActivity() {
         foodLocation = findViewById(R.id.foodLocation)
         requestButton = findViewById(R.id.requestButton)
         progressBar = findViewById(R.id.progressBar)
-        progressBar.visibility= View.GONE
+        progressBar.visibility = View.GONE
 
         lottieAnimationView = findViewById(R.id.lottieAnimationView)
 
@@ -92,7 +92,7 @@ class FoodDetailsActivity : AppCompatActivity() {
     }
 
     private fun updateUI(food: FoodNgo) {
-        val imageUrl = "http://annaseva.ajinkyatechnologies.in/${food.uploadPhoto}"
+        val imageUrl = food.imageUrl
         Picasso.get().load(imageUrl).into(foodImage)
         // Update UI with food details
         foodType.text = food.type
@@ -100,7 +100,7 @@ class FoodDetailsActivity : AppCompatActivity() {
         foodCategory.text = food.category
         foodQuantity.text = food.quantity.toString()
         foodExpiry.text = food.expiry.toString()
-        foodIdealFor.text = food.idealfor
+        foodIdealFor.text = food.idealFor
         foodAvailableAt.text = food.availableAt
         foodTransportation.text = food.transportation
         foodContactPerson.text = food.contactPerson
@@ -108,6 +108,8 @@ class FoodDetailsActivity : AppCompatActivity() {
         foodPickupInstructions.text = food.pickupInstructions
         foodHotelName.text = food.hotel.name
         foodDescription.text = food.description
+
+
         foodLocation.text = "Loading location..." // Placeholder until geocoding is done
         food.hotel.location.coordinates?.let { geocodeLocation(it.toString()) }
     }
@@ -127,18 +129,12 @@ class FoodDetailsActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call, response: Response) {
-                Log.d("FoodDetailsActivity", "Response received: $response")
                 if (response.isSuccessful) {
                     response.body?.let { responseBody ->
-
-                        Log.d("FoodDetailsActivity", "Response body received: $responseBody")
                         val responseString = responseBody.string()
-                        Log.d("FoodDetailsActivity", "Response string: $responseString")
                         val jsonObject = JsonParser.parseString(responseString).asJsonObject
-                        Log.d("FoodDetailsActivity", "JSON object: $jsonObject")
                         val results = jsonObject.getAsJsonArray("results")
-                        Log.d("FoodDetailsActivity", "Results array: $results")
-                        if (results != null && results.size() > 0) { // Check if results is not null
+                        if (results != null && results.size() > 0) {
                             val result = results[0].asJsonObject
                             val formatted = result.get("formatted").asString
                             runOnUiThread {
@@ -150,32 +146,31 @@ class FoodDetailsActivity : AppCompatActivity() {
                             }
                         }
                     }
+                } else {
+                    runOnUiThread {
+                        foodLocation.text = "Error in response"
+                    }
                 }
             }
-
         })
     }
 
-    private fun checkRequestStatus(food: FoodNgo) {
+    private fun checkRequestStatus(donation: FoodNgo) {
         val sharedPreferences = getSharedPreferences("login", MODE_PRIVATE)
-        val ngoId = sharedPreferences.getString("userid", null) ?: return
+        val ngoId = sharedPreferences.getString("userId", null) ?: return
 
-        val requestId = sharedPreferences.getString("request_${food.id}", null)
-        requestId?.let { // If requestId is not null
-            // The NGO has already requested this donation
+        val requestId = sharedPreferences.getString("request_${donation.id}", null)
+        requestId?.let {
             runOnUiThread {
-                // Update button to requested state
                 requestButton.text = "Requested"
-                requestButton.setBackgroundColor(resources.getColor(R.color.main, null))
+                requestButton.setBackgroundColor(resources.getColor(R.color.black, null))
                 requestButton.setTextColor(Color.WHITE)
                 requestButton.isEnabled = false
             }
         } ?: run {
-            // The NGO has not requested this donation yet
             runOnUiThread {
-                // Update button to request state
                 requestButton.text = "Request Donation"
-                requestButton.setBackgroundColor(resources.getColor(R.color.main, null))
+                requestButton.setBackgroundColor(resources.getColor(R.color.volumain, null))
                 requestButton.isEnabled = true
             }
         }
@@ -186,7 +181,6 @@ class FoodDetailsActivity : AppCompatActivity() {
         builder.setTitle("Confirm Request")
         builder.setMessage("Are you sure you want to request this donation?")
         builder.setPositiveButton("Confirm") { _, _ ->
-            startProgress()
             food.let { makeRequest(it) }
         }
         builder.setNegativeButton("Cancel") { dialog, _ ->
@@ -197,21 +191,13 @@ class FoodDetailsActivity : AppCompatActivity() {
     }
 
     private fun startProgress() {
-        progressBar.visibility= View.GONE
+        progressBar.visibility = View.GONE
         requestButton.isEnabled = false
         progressBar.visibility = View.VISIBLE
 
-        // Play the animation
         lottieAnimationView.visibility = View.VISIBLE
         lottieAnimationView.playAnimation()
 
-        // Change button text and color
-        requestButton.text = "Requested"
-        requestButton.setBackgroundColor(resources.getColor(R.color.main, null))
-        requestButton.setTextColor(Color.WHITE)
-
-        // Make animation view invisible after playing
-        // Inside startProgress() function after playing the animation
         lottieAnimationView.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {}
 
@@ -224,64 +210,107 @@ class FoodDetailsActivity : AppCompatActivity() {
 
             override fun onAnimationRepeat(animation: Animator) {}
         })
-
     }
 
-    private fun makeRequest(food: FoodNgo) {
+//    private fun geocodeLocation(location: String) {
+//        val client = OkHttpClient.Builder()
+//            .callTimeout(10, java.util.concurrent.TimeUnit.SECONDS) // Set a network timeout
+//            .build()
+//
+//        val request = Request.Builder()
+//            .url("https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${openCageApiKey}")
+//            .build()
+//
+//        client.newCall(request).enqueue(object : Callback {
+//            override fun onFailure(call: Call, e: IOException) {
+//                Log.e("FoodDetailsActivity", "Geocoding failed: ${e.message}")
+//                runOnUiThread {
+//                    foodLocation.text = "Geocoding failed: ${e.localizedMessage}"
+//                    progressBar.visibility = View.GONE
+//                }
+//            }
+//
+//            override fun onResponse(call: Call, response: Response) {
+//                if (response.isSuccessful) {
+//                    response.body?.let { responseBody ->
+//                        val responseString = responseBody.string()
+//                        val jsonObject = JsonParser.parseString(responseString).asJsonObject
+//                        val results = jsonObject.getAsJsonArray("results")
+//                        if (results != null && results.size() > 0) {
+//                            val result = results[0].asJsonObject
+//                            val formatted = result.get("formatted").asString
+//                            runOnUiThread {
+//                                foodLocation.text = formatted
+//                            }
+//                        } else {
+//                            runOnUiThread {
+//                                foodLocation.text = "No location found"
+//                            }
+//                        }
+//                    }
+//                } else {
+//                    runOnUiThread {
+//                        foodLocation.text = "Error in response: ${response.message}"
+//                    }
+//                }
+//            }
+//        })
+//    }
+
+    private fun makeRequest(donation: FoodNgo) {
         val sharedPreferences = getSharedPreferences("login", MODE_PRIVATE)
-        val ngoId = sharedPreferences.getString("userid", null) ?: return
+        val ngoId = sharedPreferences.getString("userId", null) ?: return
 
-        val requestBody = JSONObject()
-        requestBody.put("donationId", food.id)
-        requestBody.put("ngoId", ngoId)
-
-        val client = OkHttpClient()
-        val request = Request.Builder()
-            .url("http://annaseva.ajinkyatechnologies.in/api/donation/donations/request")
-            .put(RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), requestBody.toString()))
-
+        val client = OkHttpClient.Builder()
+            .callTimeout(10, java.util.concurrent.TimeUnit.SECONDS) // Set a network timeout
             .build()
+
+        val url = "https://anna-seva-backend.onrender.com/donation/requestDonation/${donation.id}?ngoId=$ngoId"
+
+        val request = Request.Builder()
+            .url(url)
+            .put(RequestBody.create("application/json".toMediaTypeOrNull(), "{}")) // Correctly specify the media type
+            .build()
+
+        Log.d("Request", "Making request: $url")
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.e("FoodDetailsActivity", "Request failed: ${e.message}")
                 runOnUiThread {
                     progressBar.visibility = View.GONE
-                    // Handle the failure, e.g., show a Toast or update UI
+                    Toast.makeText(this@FoodDetailsActivity, "Failed to request donation: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onResponse(call: Call, response: Response) {
-                if (response.isSuccessful) {
-                    response.body?.let { responseBody ->
-                        val responseString = responseBody.string()
-                        val jsonObject = JsonParser.parseString(responseString).asJsonObject
-                        if (jsonObject.get("success").asBoolean) {
-                            runOnUiThread {
-                                // Store the request ID and map it to the donation ID
-                                val requestId = jsonObject.getAsJsonObject("request").getAsJsonPrimitive("_id").asString
-                                // Store the requestId in your SharedPreferences or database along with the donationId
-                                // For example, you can use SharedPreferences to store the mapping
-                                val sharedPrefsEditor = sharedPreferences.edit()
-                                sharedPrefsEditor.putString("request_${food.id}", requestId)
-                                sharedPrefsEditor.apply()
-
-                                // Show toast indicating success
-                                Toast.makeText(this@FoodDetailsActivity, "Requested successfully", Toast.LENGTH_SHORT).show()
-                            }
-                        } else {
-                            runOnUiThread {
+                runOnUiThread {
+                    progressBar.visibility = View.GONE
+                    if (response.isSuccessful) {
+                        response.body?.let {
+                            val responseString = it.string()
+                            val jsonObject = JSONObject(responseString)
+                            val success = jsonObject.getBoolean("success")
+                            if (success) {
+                                startProgress()
+                                Toast.makeText(this@FoodDetailsActivity, "Donation requested successfully", Toast.LENGTH_SHORT).show()
+                                val editor = sharedPreferences.edit()
+                                editor.putString("request_${donation.id}", donation.id)
+                                editor.apply()
                                 progressBar.visibility = View.GONE
-                                // Handle the failure, e.g., show a Toast or update UI
-                                // You can show a Toast message or an alert dialog to notify the user about the failure
+                                requestButton.text = "Requested"
+                                requestButton.setBackgroundColor(resources.getColor(R.color.main, null))
+                                requestButton.setTextColor(Color.WHITE)
+                                requestButton.isEnabled = false
+                            } else {
+                                val errorMessage = jsonObject.optString("message", "Unknown error")
+                                Toast.makeText(this@FoodDetailsActivity, "Failed to request donation: $errorMessage", Toast.LENGTH_SHORT).show()
                             }
                         }
-                    }
-                } else {
-                    runOnUiThread {
-                        progressBar.visibility = View.GONE
-                        // Handle the failure, e.g., show a Toast or update UI
-                        // You can show a Toast message or an alert dialog to notify the user about the failure
+                    } else {
+                        val errorResponse = response.body?.string()
+                        Log.e("FoodDetailsActivity", "Request failed: $errorResponse")
+                        Toast.makeText(this@FoodDetailsActivity, "Error in response: ${response.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -289,4 +318,3 @@ class FoodDetailsActivity : AppCompatActivity() {
     }
 
 }
-

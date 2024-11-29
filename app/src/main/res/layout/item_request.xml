@@ -1,35 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:orientation="vertical"-->
+<!--    android:padding="8dp"-->
+<!--    android:background="@color/hoteltext"-->
+<!--    android:layout_marginBottom="8dp">-->
+
+<!--    &lt;!&ndash; NGO Name &ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/ngoName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="NGO Name"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:layout_marginBottom="8dp" />-->
+
+<!--    &lt;!&ndash; Buttons Container &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+
+<!--        android:orientation="horizontal">-->
+
+<!--        &lt;!&ndash; Accept Button &ndash;&gt;-->
+<!--        <android.widget.Button-->
+<!--            android:id="@+id/acceptButton"-->
+<!--            android:layout_width="10dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Accept"-->
+<!--            android:background="@drawable/btnh"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:padding="4dp"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginEnd="28dp"-->
+<!--            android:layout_marginTop="4dp" />-->
+
+<!--        &lt;!&ndash; Reject Button &ndash;&gt;-->
+<!--        <android.widget.Button-->
+<!--            android:id="@+id/rejectButton"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Reject"-->
+<!--            android:background="@drawable/btnv"-->
+<!--            android:textColor="@android:color/white"-->
+<!--            android:padding="4dp"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginTop="4dp" />-->
+<!--    </LinearLayout>-->
+<!--</LinearLayout>-->
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="@dimen/_250sdp"
+android:layout_height="wrap_content"
+android:layout_marginVertical="@dimen/_16sdp">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="@dimen/_80sdp"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
 
     <TextView
         android:id="@+id/ngoName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NGO Name"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:fontFamily="@font/epilogue_bold"
+        android:gravity="start"
+        android:hint="Title"
+        android:paddingHorizontal="@dimen/_14sdp"
+        android:paddingVertical="@dimen/_4sdp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="@dimen/_12ssp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp">
+    <Button
+        android:id="@+id/rejectButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#F44336"
+        android:elevation="@dimen/_5sdp"
+        android:fontFamily="@font/epilogue_semibold"
+        android:text="✖"
+        android:textColor="@color/bg"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ngoName"
+        app:layout_constraintVertical_bias="0.466" />
 
-        <Button
-            android:id="@+id/acceptButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Accept" />
-
-        <Button
-            android:id="@+id/rejectButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Reject"
-            android:layout_marginStart="16dp" />
-    </LinearLayout>
-</LinearLayout>
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/main"
+        android:elevation="@dimen/_5sdp"
+        android:fontFamily="@font/epilogue_semibold"
+        android:text="✔"
+        android:textColor="@color/bg"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rejectButton"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ngoName"
+        app:layout_constraintVertical_bias="0.466" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

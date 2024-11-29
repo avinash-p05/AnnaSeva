@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="@color/black"
     tools:context=".ngo.NgoFoodListings">
 
 
     <ProgressBar
         android:id="@+id/progressBar"
-        style="@style/CustomProgressBar"
+        style="@style/CustomProgressBarhw"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
@@ -28,8 +28,8 @@
         android:fontFamily="@font/epilogue_bold"
         android:gravity="center"
         android:padding="@dimen/_16sdp"
-        android:text="Surplus Food Feed"
-        android:textColor="@color/main"
+        android:text="Listed Donations"
+        android:textColor="@color/volumain"
         android:textSize="@dimen/_18ssp"
         app:flow_horizontalAlign="center"
         app:layout_constraintBottom_toBottomOf="parent"

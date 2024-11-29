@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.techelites.annaseva.R
-import com.techelites.annaseva.hotel.Home
-import com.techelites.annaseva.hotel.Profile
+import com.techelites.annaseva.hotel.AcceptedRequestsListings
 
 class NgoMainActivity : AppCompatActivity() {
     private lateinit var bottomBar: BottomNavigationView
@@ -16,16 +15,21 @@ class NgoMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_ngo_main)
 
         bottomBar = findViewById(R.id.bnViewNgo)
-        loadFrag(NgoDashboard())
+        loadFrag(NgoFoodListings())
         bottomBar.setOnItemSelectedListener{
                 menuItem ->
             when(menuItem.itemId){
                 R.id.nav_home ->{
-                    loadFrag(NgoDashboard())
+                    loadFrag(NgoFoodListings())
                     true
                 }
                 R.id.nav_post ->{
-                    loadFrag(NgoFoodListings())
+                    loadFrag(RequestedDonationsListings())
+                    true
+                }
+
+                R.id.nav_accept ->{
+                    loadFrag(AcceptedFoodDonationsListings())
                     true
                 }
 

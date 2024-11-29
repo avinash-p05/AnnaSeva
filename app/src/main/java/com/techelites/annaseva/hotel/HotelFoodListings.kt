@@ -13,11 +13,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
-import com.techelites.annaseva.auth.Donation
 import com.techelites.annaseva.R
+import com.techelites.annaseva.auth.Donation
 import okhttp3.*
-import org.json.JSONArray
 import org.json.JSONException
+import org.json.JSONObject
 import java.io.IOException
 
 class HotelFoodListings : Fragment() {
@@ -36,16 +36,12 @@ class HotelFoodListings : Fragment() {
         progressBar = view.findViewById(R.id.progressBar)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = FoodAdapterHotel(requireContext(), mutableListOf(), { donation ->
+        adapter = FoodAdapterHotel(requireContext(), mutableListOf()) { donation ->
             // Handle view details click
             val intent = Intent(requireContext(), HotelFoodDetails::class.java)
             intent.putExtra("foodItem", Gson().toJson(donation))
-            Log.d("SendingActivity", "Sending foodItem: $donation")
             startActivity(intent)
-        }, { donation ->
-            // Handle view requests click
-            showRequestsDialog(donation)
-        })
+        }
         recyclerView.adapter = adapter
 
         // Load donations when fragment is created
@@ -55,37 +51,32 @@ class HotelFoodListings : Fragment() {
     }
 
     private fun loadDonations() {
-        progressBar.visibility = View.VISIBLE // Show progress bar
+        progressBar.visibility = View.VISIBLE
         val pref: SharedPreferences = requireActivity().getSharedPreferences("login", Context.MODE_PRIVATE)
-        userId = pref.getString("userid", "").toString()
+        userId = pref.getString("userId", "").toString()
+
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("http://annaseva.ajinkyatechnologies.in/api/donation/donationsbyhotel?id=$userId")
+            .url("https://anna-seva-backend.onrender.com/hotel/availableDonations/$userId")
             .build()
 
         client.newCall(request).enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
-                val body = response.body?.string()
-                val donations = parseDonationsJson(body)
-
-                // Update UI on the main thread
-                requireActivity().runOnUiThread {
-                    progressBar.visibility = View.GONE // Hide progress bar
-
-                    if (donations.isNotEmpty()) {
-                        adapter.updateList(donations) // Update adapter with donations list
-                        recyclerView.visibility = View.VISIBLE // Show recycler view
-                    } else {
-                        recyclerView.visibility = View.GONE // Hide recycler view
+                response.body?.string()?.let {
+                    val donations = parseDonationsJson(it)
+                    requireActivity().runOnUiThread {
+                        progressBar.visibility = View.GONE
+                        adapter.updateList(donations)
+                        recyclerView.visibility = if (donations.isNotEmpty()) View.VISIBLE else View.GONE
                     }
                 }
             }
 
             override fun onFailure(call: Call, e: IOException) {
-                // Handle network request failure
+                Log.e("HotelFoodListings", "Network request failed", e)
                 requireActivity().runOnUiThread {
-                    progressBar.visibility = View.GONE // Hide progress bar
-                    recyclerView.visibility = View.GONE // Hide recycler view
+                    progressBar.visibility = View.GONE
+                    recyclerView.visibility = View.GONE
                 }
             }
         })
@@ -94,22 +85,25 @@ class HotelFoodListings : Fragment() {
     private fun parseDonationsJson(jsonString: String?): List<Donation> {
         val donationsList = mutableListOf<Donation>()
         try {
-            val jsonArray = JSONArray(jsonString)
-            for (i in 0 until jsonArray.length()) {
-                val jsonObject = jsonArray.getJSONObject(i)
-                val donation = Gson().fromJson(jsonObject.toString(), Donation::class.java)
-                donationsList.add(donation)
+            val jsonObject = JSONObject(jsonString)
+            if (jsonObject.getBoolean("success")) {
+                val dataArray = jsonObject.getJSONArray("data")
+                for (i in 0 until dataArray.length()) {
+                    val donationObject = dataArray.getJSONObject(i)
+                    val donation = Gson().fromJson(donationObject.toString(), Donation::class.java)
+                    donationsList.add(donation)
+                }
+            } else {
+                Log.e("HotelFoodListings", "Failed to retrieve donations: ${jsonObject.getString("message")}")
             }
         } catch (e: JSONException) {
             e.printStackTrace()
         }
-        return donationsList
+        return donationsList.reversed()
     }
 
-    private fun showRequestsDialog(donation: Donation) {
-        // Implement the logic to show a dialog with the list of requests for the donation
-        // For now, you can show a placeholder dialog
-        val dialog = RequestsDialogFragment.newInstance(donation._id)
+    private fun showRequestsDialog(donationId: String) {
+        val dialog = RequestsDialogFragment.newInstance(donationId)
         dialog.show(childFragmentManager, "RequestsDialog")
     }
 }

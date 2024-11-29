@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.techelites.annaseva.R
-import com.techelites.annaseva.volunteer.FoodDetailsActivity
+import com.techelites.annaseva.common.FoodDetailsActivity
 import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -57,10 +57,10 @@ class NgoFoodListings : Fragment(), FoodAdapterNgo.OnRecipeClickListener {
         val pref: SharedPreferences = requireActivity().getSharedPreferences("login",
             Context.MODE_PRIVATE
         )
-        userId = pref.getString("userid","").toString()
+        userId = pref.getString("userId","").toString()
         val client = OkHttpClient()
         val request = Request.Builder()
-            .url("http://annaseva.ajinkyatechnologies.in/api/donation/ngos/$userId/donations") // Replace with your actual API URL
+            .url("https://anna-seva-backend.onrender.com/donation/donationsByNgo/${userId}") // Replace with your actual API URL
             .build()
 
         client.newCall(request).enqueue(object : Callback {
@@ -95,98 +95,88 @@ class NgoFoodListings : Fragment(), FoodAdapterNgo.OnRecipeClickListener {
     }
 
     // Function to parse JSON and return a list of FoodNgo objects
-    // Function to parse JSON and return a list of FoodNgo objects
     fun parseJsonResponse(response: String): List<FoodNgo> {
         val jsonObject = JSONObject(response)
-        val donationsArray = jsonObject.getJSONArray("donations")
+        val donationsArray = jsonObject.getJSONArray("data")
         val donationsList = mutableListOf<FoodNgo>()
 
         for (i in 0 until donationsArray.length()) {
             val donationObject = donationsArray.getJSONObject(i)
 
+            // Parse the location
             val locationObject = donationObject.getJSONObject("location")
             val location = LocationNgo(
                 locationObject.getString("type"),
-                listOf(
+                doubleArrayOf(
                     locationObject.getJSONArray("coordinates").getDouble(0),
                     locationObject.getJSONArray("coordinates").getDouble(1)
                 )
             )
 
-            val hotelObject = donationObject.optJSONObject("hotel") // Using optJSONObject to avoid JSONException
-            val hotel: HotelNgo? = if (hotelObject != null) {
-                val hotelLocationObject = hotelObject.getJSONObject("location")
-                val hotelLocation = LocationNgo(
-                    hotelLocationObject.getString("type"),
-                    listOf(
-                        hotelLocationObject.getJSONArray("coordinates").getDouble(0),
-                        hotelLocationObject.getJSONArray("coordinates").getDouble(1)
-                    )
+            // Parse the hotel information
+            val hotelObject = donationObject.getJSONObject("hotel")
+            val hotelLocationObject = hotelObject.getJSONObject("location")
+            val hotelLocation = LocationNgo(
+                hotelLocationObject.getString("type"),
+                doubleArrayOf(
+                    hotelLocationObject.getJSONArray("coordinates").getDouble(0),
+                    hotelLocationObject.getJSONArray("coordinates").getDouble(1)
                 )
+            )
 
-                HotelNgo(
-                    hotelLocation,
-                    hotelObject.getString("_id"),
-                    hotelObject.getString("name"),
-                    hotelObject.getString("email"),
-                    hotelObject.getString("address"),
-                    hotelObject.getString("city"),
-                    hotelObject.getString("state"),
-                    hotelObject.getString("pincode"),
-                    hotelObject.getString("contactPerson"),
-                    hotelObject.getString("contactNumber"),
-                    hotelObject.getBoolean("isDeleted"),
-                    hotelObject.getString("createdAt"),
-                    hotelObject.getString("updatedAt")
-                )
-            } else {
-                null
-            }
+            val hotel = HotelNgo(
+                hotelObject.getString("id"),
+                hotelObject.getString("name"),
+                hotelObject.getString("email"),
+                hotelObject.optString("password", ""),
+                hotelObject.getString("address"),
+                hotelObject.getString("city"),
+                hotelObject.getString("state"),
+                hotelObject.getString("pinCode"),
+                hotelLocation,
+                hotelObject.getString("contactPerson"),
+                hotelObject.getString("contactNumber"),
+                hotelObject.getJSONArray("donations").let { donationsJsonArray ->
+                    List(donationsJsonArray.length()) { donationsJsonArray.getString(it) }
+                },
+                hotelObject.getString("createdAt"),
+                hotelObject.getString("updatedAt"),
+                hotelObject.optBoolean("verified")
+            )
 
-            val foodNgo = hotel?.let {
-                FoodNgo(
-                    donationObject.getString("_id"),
-                    donationObject.getString("type"),
-                    donationObject.getString("name"),
-                    donationObject.getString("description"),
-                    donationObject.getString("category"),
-                    donationObject.getInt("quantity"),
-                    donationObject.getString("expiry"),
-                    donationObject.getString("idealfor"),
-                    donationObject.optString("availableAt", ""), // Changed to optString
-                    donationObject.getString("transportation"),
-                    donationObject.optString("uploadPhoto"), // Changed to optString
-                    donationObject.getJSONArray("requests").let { requestsArray ->
-                        List(requestsArray.length()) { requestsArray.getString(it) }
-                    },
-                    donationObject.getString("contactPerson"),
-                    donationObject.getString("donationStatus"),
-                    donationObject.getString("pickupInstructions"),
-                    it, // Passing the hotel object or null
-                    donationObject.getBoolean("isUsable"),
-                    donationObject.getJSONArray("reports").let { reportsArray ->
-                        List(reportsArray.length()) { reportsArray.getString(it) }
-                    },
-                    donationObject.getString("autoAssignStatus"),
-                    donationObject.getString("shipmentStatus"),
-                    donationObject.getBoolean("hotelCoversTransport"),
-                    donationObject.getBoolean("platformManagesTransport"),
-                    donationObject.getString("createdAt"),
-                    donationObject.getString("updatedAt")
-                )
-            }
+            // Parse the donation details
+            val foodNgo = FoodNgo(
+                donationObject.getString("id"),
+                donationObject.getString("type"),
+                donationObject.getString("name"),
+                donationObject.getString("description"),
+                donationObject.getString("category"),
+                donationObject.getInt("quantity"),
+                donationObject.getString("expiry"),
+                donationObject.getString("idealFor"),
+                donationObject.optString("availableAt", ""),
+                location,
+                donationObject.getString("transportation"),
+                donationObject.optString("imageUrl"),
+                donationObject.getJSONObject("requests").keys().asSequence().toList(),
+                donationObject.getString("contactPerson"),
+                donationObject.getString("donationStatus"),
+                donationObject.getString("pickupInstructions"),
+                hotel,
+                donationObject.optString("autoAssignStatus", ""),
+                donationObject.optString("shipmentStatus", ""),
+                donationObject.optBoolean("hotelCoversTransport"),
+                donationObject.getString("createdAt"),
+                donationObject.getString("updatedAt")
+            )
 
-            if (foodNgo != null) {
-                donationsList.add(foodNgo)
-            }
+            donationsList.add(foodNgo)
         }
 
-        return donationsList
+        return donationsList.reversed()
     }
 
 
-
-    // Make your network request and parse the response
 
     override fun onRecipeClick(food: FoodNgo) {
         // Handle the click event, navigate to FoodDetailsActivity

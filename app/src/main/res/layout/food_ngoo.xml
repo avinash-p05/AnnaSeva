@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
+    android:background="@color/bg"
+    app:cardCornerRadius="@dimen/_10sdp"
     android:layout_marginVertical="@dimen/_16sdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_300sdp"
-        android:background="@color/white"
+        android:background="@color/bg"
         android:orientation="vertical">
 
 
@@ -20,7 +22,7 @@
             android:hint="date"
             android:fontFamily="@font/epilogue"
             android:paddingHorizontal="@dimen/_8sdp"
-            android:textColor="@color/main"
+            android:textColor="@color/text"
             android:textColorHint="@color/text"
             android:textSize="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -41,8 +43,8 @@
             android:lineSpacingExtra="4dp"
             android:paddingHorizontal="@dimen/_16sdp"
             android:paddingVertical="@dimen/_2sdp"
-            android:textColor="@color/main"
-            android:textColorHint="@color/white"
+            android:textColor="@color/black"
+            android:textColorHint="@color/text"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,8 +62,8 @@
             android:gravity="start"
             android:hint="Username"
             android:paddingVertical="@dimen/_8sdp"
-            android:textColor="@color/main"
-            android:textColorHint="@color/white"
+            android:textColor="@color/volumain"
+            android:textColorHint="@color/text"
             android:textSize="@dimen/_14ssp"
             app:flow_horizontalAlign="center"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -80,8 +82,8 @@
             android:hint="Title"
             android:paddingHorizontal="@dimen/_14sdp"
             android:paddingVertical="@dimen/_4sdp"
-            android:textColor="@color/main"
-            android:textColorHint="@color/white"
+            android:textColor="@color/volumain"
+            android:textColorHint="@color/text"
             android:textSize="@dimen/_14ssp"
             app:flow_horizontalAlign="center"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -91,7 +91,7 @@ class HotelFoodDetails : AppCompatActivity() {
         foodCategory.text = food.category
         foodQuantity.text = food.quantity.toString()
         foodExpiry.text = food.expiry
-        foodIdealFor.text = food.idealfor
+        foodIdealFor.text = food.idealFor
         foodAvailableAt.text = food.availableAt
         foodTransportation.text = food.transportation
         foodContactPerson.text = food.contactPerson
